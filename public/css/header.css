@@ -1,0 +1,163 @@
+:root{
+    --color1:rgb(255,107,13);
+    --color2: black;
+    --color3: white;
+    --color4: rgb(240, 240, 240);
+  }
+
+.a1SideNavBar{
+    text-decoration: none;
+    font-size: 15px;
+    color: black;
+    display: block;
+    padding-left: 10px;
+    padding-bottom:10px;
+    font-weight: bold;
+}
+
+.a2SideNavBar{
+    text-decoration: none;
+    font-size: 13px;
+    color: black;
+    display: block;
+    padding-left: 20px;
+    padding-bottom:10px;
+    font-weight: 100;
+}
+
+.companyLogo{
+    margin-top: 20px;
+    margin-left: 10px;
+    height: 50px;
+}
+
+.companyLogo2{
+    height: 60px;
+}
+
+.companyLogoMobile{
+    height: 35px;
+
+}
+
+.divMenu{
+    margin-top:15px
+}
+
+.divSideNav{
+    margin-top:25px;
+}
+
+.divNavMobile{
+    padding-top: 10px;
+    background-color: rgb(237, 234, 234);
+    border-radius: 3px;
+    position: absolute;
+    right: 15px;
+    top:25px;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 190px;
+}
+
+.divSideNavImgMobile{
+    display:none
+}
+
+.fa-bars{
+    font-size: 25px;
+    position: relative;
+}
+
+.logoutUserLogged{
+    color:white
+}
+
+.nameUserLogged{
+    color:white
+}
+
+.navMobile{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
+    padding-bottom: 3px;
+    align-items: center;
+    border-bottom: rgb(202, 199, 199) solid 1px;
+    display: none;
+}
+
+.aUserLogged{
+    color:#0046FF
+}
+
+.sidenav {
+    width: 18%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    /*background-color: rgb(206, 200, 200);*/
+    background-color: var(--color4);
+
+
+    overflow-x: hidden;
+    height:100%
+    
+  }
+
+.sidenav a:hover {
+color: #928f8f;
+}
+
+.userLogged{
+text-align: right;
+padding-right: 15px;
+}
+
+.userLoggedName{
+    margin-top:3px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.userLoggedMobile{
+    display: none;
+}
+
+.userLoggedNameMobile{
+    font-size: 12px;
+    margin-top: 5px;
+    text-align: right;
+}
+.userLoggedLogout{
+    margin-top:3px;
+    font-size: 12px;
+}
+
+
+.aUserLogged{
+    color: rgb(4, 4, 222);
+    text-decoration: none;
+    
+}
+
+@media (max-width:769px){
+    .sidenav{
+        display:none
+    }
+    .divSideNavImgMobile{
+        display:block;
+    }
+    .userLogged{
+        display:none
+    }
+    .navMobile{
+        display: flex;
+    }
+    .userLoggedMobile{
+        display: block;
+    }
+
+}
+
+

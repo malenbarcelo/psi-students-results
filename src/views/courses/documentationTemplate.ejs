@@ -1,0 +1,234 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+<%- include('../partials/userLogged') %>
+
+<% if (locals.successMessage) { %>
+    <script>
+        alertify.success('Template generado con éxito');
+    </script>
+<% } %>
+
+<div class="divTemplate">
+
+    <h3 class="certTempTitle">Diseño de certificado</h3>
+
+    <form action="/courses/create-template"  enctype="multipart/form-data" method="POST" class="form1">
+        <div class="selectTemplate">
+            <select name="selectCourse" id ="selectCourse" class="certTemSelectCourse <%= locals.errors && errors.selectCourse ? 'isInvalid' : null %>">
+                <option value="default" selected>--Seleccione un curso--</option>
+                <% courses.forEach(course => { %>
+                    <option value="<%= course.id %>" <%= locals.oldData && oldData.selectCourse == course.id ? 'selected' : null %>><%= course.course_name %></option>
+                <% }) %>
+            </select>
+        </div>
+        <div class="divError1">
+            <% if (locals.errors && errors.selectCourse) { %>
+                <%= errors.selectCourse.msg %>
+            <% } %>
+        </div>
+
+        <div class="divTemplate3">
+            <div class="templateSubTitle">Certificado</div>
+                <div class="divInput">
+                    <input type="text" class="inputCertificate <%= locals.errors && errors.certificateName ? 'isInvalid' : null %>" name="certificateName" id="" placeholder="Nombre del curso" value="<%= locals.oldData ? oldData.certificateName : null %>">
+                </div>
+                <div class="divError1 divErrorTemplate">
+                    <% if (locals.errors && errors.certificateName) { %>
+                        <%= errors.certificateName.msg %>
+                    <% } %>
+                </div>
+                <div class="divInput">
+                    <textarea name="certificateNormatives" class="textareaCertificate" id="" cols="30" placeholder="Normativas del certificado"><%= locals.oldData ? locals.oldData.certificateNormatives : null %></textarea>
+                </div>
+            <div class="divLogosTemplate2">
+                <div class="divTemplate2 <%= locals.errors && errors.option1 ? 'isInvalid' : null %>">
+                    <div class="templateSubTitle">Logo de pie de página del certificado</div>
+                    <div class="divLogosTemplate">
+                        <% certificateLogos.forEach(logo => { %>
+                            <div class="divLogoCert">
+                                <img src="/images/documentsImages/<%= logo.certificate_logo %>" alt="<%= logo.certificate_logo %>" class="logoTemplate">
+                                <input type="radio" name="option1" value="<%= logo.certificate_logo %>" <%= locals.oldData && locals.oldData.option1 == logo.certificate_logo ? 'checked' : null %>>
+                            </div>
+                        <% }) %>
+                    </div>
+                    <div class="divOther <%= locals.errors && errors.logo1 ? 'isInvalid' : null %>">
+                        <div class="divRadioOther">
+                            <input type="radio" name="option1" value="other" <%= locals.oldData && locals.oldData.option1 == 'other' ? 'checked' : null %>>
+                            <div>Otro</div>
+                        </div>
+                        <input type="file" name="logo1" class="fileTemplate">
+                    </div>
+                    <div class="divError1 divErrorTemplate3">
+                        <% if (locals.errors && errors.logo1) { %>
+                            <%= errors.logo1.msg %>
+                        <% } %>
+                    </div>
+                    <div class="divNone">
+                        <div class="divRadioOther">
+                            <input type="radio" name="option1" value="none" <%= locals.oldData && locals.oldData.option1 == 'none' ? 'checked' : null %>>
+                            <div>Ninguno</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="divError1 divErrorTemplate">
+                <% if (locals.errors && errors.option1) { %>
+                    <%= errors.option1.msg %>
+                <% } %>
+            </div>
+        </div>
+
+        <div class="divTemplate3">
+            <div class="templateSubTitle">Credencial</div>
+                <div class="divInput">
+                    <input type="text" class="inputCertificate" name="credentialForehead" id="" placeholder="Frente de la credencial">
+                </div>
+                <div class="divInput">
+                    <input type="text" class="inputCertificate" name="credentialBack" id="" placeholder="Dorso de la credencial">
+                </div>
+                <div class="divInput">
+                    <textarea name="credentialNormatives" class="textareaCertificate" id="" cols="30" placeholder="Normativas de la credencial"></textarea>
+                </div>
+            <div class="divLogosTemplate2">
+                <div class="divTemplate2 <%= locals.errors && errors.option2 ? 'isInvalid' : null %>">
+                    <div class="templateSubTitle">Logo de la credencial</div>
+                    <div class="divLogosTemplate">
+                        <% credentialLogos.forEach(logo => { %>
+                            <div class="divLogoCert">
+                                <img src="/images/documentsImages/<%= logo.credential_logo %>" alt="<%= logo.credential_logo %>" class="logoTemplate">
+                                <input type="radio" name="option2" value="<%= logo.credential_logo %>" <%= locals.oldData && locals.oldData.option2 == logo.credential_logo ? 'checked' : null %>>
+                            </div>
+                        <% }) %>
+                    </div>
+                    <div class="divOther <%= locals.errors && errors.logo2 ? 'isInvalid' : null %>">
+                        <div class="divRadioOther">
+                            <input type="radio" name="option2" value="other" <%= locals.oldData && locals.oldData.option2 == 'other' ? 'checked' : null %>>
+                            <div>Otro</div>
+                        </div>
+                        <input type="file" name="logo2" class="fileTemplate">
+                    </div>
+                    <div class="divError1 divErrorTemplate3">
+                        <% if (locals.errors && errors.logo2) { %>
+                            <%= errors.logo2.msg %>
+                        <% } %>
+                    </div>
+                    <div class="divNone">
+                        <div class="divRadioOther">
+                            <input type="radio" name="option2" value="none" <%= locals.oldData && locals.oldData.option2 == 'none' ? 'checked' : null %>>
+                            <div>Ninguno</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="divError1 divErrorTemplate">
+                <% if (locals.errors && errors.option2) { %>
+                    <%= errors.option2.msg %>
+                <% } %>
+            </div>
+        </div>
+
+        <div class="divTemplate3">
+            <div class="templateSubTitle">Firmas</div>
+            <div class="divTemplate2 <%= locals.errors && errors.option3 ? 'isInvalid' : null %>">
+                <div class="templateSubTitle">Firma 1</div>
+                <div class="divLogosTemplate">
+                    <% signatures1.forEach(signature => { %>
+                        <div class="divLogoImg">
+                            <img src="/images/documentsImages/<%= signature.signature1_image %>" alt="<%= signature.signature1_image %>" class="signatureTemplate">
+                            <input type="radio" name="option3" value="<%= signature.signature1_image %>" <%= locals.oldData && locals.oldData.option3 == signature.signature1_image ? 'checked' : null %>>
+                        </div>
+                    <% }) %>
+                </div>
+                <div class="divOther <%= locals.errors && errors.signature1 ? 'isInvalid' : null %>">
+                    <div class="divRadioOther">
+                        <input type="radio" name="option3" value="other" <%= locals.oldData && locals.oldData.option3 == 'other' ? 'checked' : null %>>
+                        <div>Otro</div>
+                    </div>
+                    <input type="file" name="signature1" class="fileTemplate">
+                </div>
+                <div class="divError1 divErrorTemplate3">
+                    <% if (locals.errors && errors.signature1) { %>
+                        <%= errors.signature1.msg %>
+                    <% } %>
+                </div>
+            </div>
+            <div class="divError1 divErrorTemplate2">
+                <% if (locals.errors && errors.option3) { %>
+                    <%= errors.option3.msg %>
+                <% } %>
+            </div>
+
+            <div class="divTemplate2 <%= locals.errors && errors.option4 ? 'isInvalid' : null %>">
+                <div class="templateSubTitle">Firma 2</div>
+                <div class="divLogosTemplate">
+                    <% signatures2.forEach(signature => { %>
+                        <div class="divLogoImg">
+                            <img src="/images/documentsImages/<%= signature.signature2_image %>" alt="<%= signature.signature2_image %>" class="signatureTemplate">
+                            <input type="radio" name="option4" value="<%= signature.signature2_image %>" <%= locals.oldData && locals.oldData.option4 == signature.signature2_image ? 'checked' : null %>>
+                        </div>
+                    <% }) %>
+                </div>
+                <div class="divOther <%= locals.errors && errors.signature2 ? 'isInvalid' : null %>">
+                    <div class="divRadioOther">
+                        <input type="radio" name="option4" value="other" <%= locals.oldData && locals.oldData.option4 == 'other' ? 'checked' : null %>>
+                        <div>Otro</div>
+                    </div>
+                    <input type="file" name="signature2" class="fileTemplate">
+                </div>
+                <div class="divError1 divErrorTemplate3">
+                    <% if (locals.errors && errors.signature2) { %>
+                        <%= errors.signature2.msg %>
+                    <% } %>
+                </div>
+                <div class="divNone">
+                    <div class="divRadioOther">
+                        <input type="radio" name="option4" value="none" <%= locals.oldData && locals.oldData.option4 == 'none' ? 'checked' : null %>>
+                        <div>Ninguno</div>
+                    </div>
+                </div>
+            </div>
+            <div class="divError1 divErrorTemplate">
+                <% if (locals.errors && errors.option4) { %>
+                    <%= errors.option4.msg %>
+                <% } %>
+            </div>
+        </div>
+            
+        <div class="divSubmitTemplate">
+            <button type="submit" class="btnSubmit">Guardar</button>
+        </div>
+    </form>
+
+
+
+
+
+
+
+
+
+    
+
+    
+
+    
+        
+
+        
+
+        
+
+        
+
+        
+    
+
+
+</div>
+
+
+
+
+
+
+

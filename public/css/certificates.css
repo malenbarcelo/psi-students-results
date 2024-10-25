@@ -1,0 +1,196 @@
+.certDivStudentPhoto{
+    position: absolute;
+    right:35px;
+    top: 120px
+}
+
+.certStudentPhoto{
+    height: 100px;
+}
+
+.certDiv1{
+    border-top:rgb(86, 83, 83) solid 4px;
+    border-right:rgb(137, 133, 133) solid 4px;
+    border-bottom:rgb(86, 83, 83) solid 4px;
+    border-left:rgb(137, 133, 133) solid 4px;
+    width: 900px;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.certDiv2{
+    margin: auto;
+    /*font-family: arial;*/
+    position: relative;
+    border-top:white solid 5px;
+    border-right:white solid 5px;
+    border-left: #fc6000 solid 4px;
+    border-bottom: #fc6000 solid 4px;
+    width: 870px;
+    /*font-family:Arial, Helvetica, sans-serif;*/
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+}
+
+.certDivHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 10px;
+}
+
+.certDivHeaderLogo{
+    text-align: center;
+}
+
+.certPsiLogo{
+    height: 50px;
+}
+.certVientoLogo{
+    height: 70px;
+    padding-left: 30px;
+}
+
+.certHeaderData{
+    text-align: right;
+    width: 500px;
+}
+
+.certHeaderDataLine{
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.certDivText{
+    width: 95%;
+    margin: auto;
+    margin-top:10px;
+}
+
+.certStudentName{
+    font-size: 40px;
+    margin: auto;
+    font-weight: bold;
+    font-style: italic;
+    height: 90px;
+    display: flex;  
+    justify-content: center;
+    text-align: center;
+    width: 640px;
+    align-items: flex-end;
+}
+
+.certStudentDni{
+    font-size: 28px;
+    margin: auto;
+    text-align: center;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.certCourseName{
+    display: flex;
+    align-items: center;
+    font-size: 36px;
+    margin: auto;
+    text-align: center;
+    margin-top: 10px;
+    width: 830px;
+    font-weight: bold;
+    color: #fc6000;
+    height: 90px;
+    justify-content: center;
+
+}
+
+.certTransparent{
+    color: transparent;
+}
+
+.certValidity{
+    font-size: 20px;
+    margin: auto;
+    text-align: center;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+.certDrivingText{
+    font-size: 20px;
+    margin: auto;
+    text-align: center;
+    margin-top: 15px;
+    font-style: italic;
+}
+
+.certDrivingText2{
+    font-size: 20px;
+    margin: auto;
+    text-align: center;
+    margin-top: 15px;
+    font-style: italic;
+    margin-bottom: -25px;
+    height: 72.5px;
+}
+
+.certNormatives{
+    display: flex;
+    font-size: 20px;
+    margin: auto;
+    justify-content: center;
+    margin-top: 15px;
+    font-style: italic;
+    height: 55px;
+    text-align: center;
+}
+
+.certDivFooter{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    column-gap: 5px;
+    position: relative;
+    height: 105px;
+    margin-bottom: 10px;
+}
+
+.certDivSignature{
+    text-align: center;
+    height: 100px;
+}
+
+.certImgSignature{
+    height: 100px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.certDivFooterLogo{
+    text-align: right;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 105px;
+}
+
+.certFooterLogo{
+    height: 100px;
+}
+
+.certTriangle {
+    width: 0;
+    height: 0;
+    border-right: 30px solid transparent;
+    border-top: 30px solid transparent;
+    border-left: 30px solid #fc6000;
+    border-bottom: 30px solid #fc6000;
+    position:absolute;
+    top:57px;
+    right: 813px;
+}
+
+.certDivDrivingFooterLogo{
+    padding-right: 0px;
+}

@@ -1,0 +1,86 @@
+<div class="sidenav">    
+    <div class="divSideNavImg">
+        <img src="/images/companyLogo.png" alt="Company Logo" class="companyLogo">
+    </div>
+
+    <div class="divSideNav">
+        <div class="divMenu">
+            <% if (locals.isLogged && userLogged.id_users_categories == 4) { %>
+                <div class = "a1SideNavBar">DATOS</div>
+                <a class = "a2SideNavBar" href="/courses/my-courses/<%= userLogged.users_companies.company_name %>">Cursos</a>
+                
+            <% } %>
+        </div>
+
+        
+        <div class="divMenu">
+            <% if (locals.isLogged && userLogged.id_users_categories != 4 ) { %>
+                <div class = "a1SideNavBar">CURSOS</div>
+                <a class = "a2SideNavBar" href="/courses/create-course">Crear curso</a>
+                <a class = "a2SideNavBar" href="/courses/create-template">Diseñar certificado</a>
+                <a class = "a2SideNavBar" href="/courses/start-course">Iniciar curso</a>
+                <a class = "a2SideNavBar" href="/courses/my-courses/<%= userLogged.users_companies.company_name %>">Mis cursos</a>
+                <a class = "a2SideNavBar" href="/courses/view-courses">Ver formularios</a>
+                <a class = "a2SideNavBar" href="/courses/import-data">Importar resultados</a>               
+            <% } %>
+        </div>
+    </div>
+</div>
+
+<div class="navMobile">
+    <div class="divSideNavImgMobile">
+        <img src="/images/companyLogo.png" alt="Company Logo" class="companyLogoMobile">
+    </div>
+    <% if (locals.isLogged) { %>
+        <div class="burgerMenuMobile">
+            <i class="fa-solid fa-bars" id="burgerMenu">
+                <div class="divNavMobile notVisible" id="menuMobile">
+                    <div class="divMenuMobile">
+                        <% if (locals.isLogged && userLogged.id_users_categories == 4) { %>
+                            <div class = "a1SideNavBar">DATOS</div>
+                            <a class = "a2SideNavBar" href="/courses/my-courses">Cursos</a>
+                            
+                        <% } %>
+                    </div>
+            
+                    <div class="divMenuMobile">
+                        <% if (locals.isLogged && userLogged.id_users_categories != 4 ) { %>
+                            <div class = "a1SideNavBar">ADMINISTRACIÓN</div>
+                            <a class = "a2SideNavBar" href="/users/create-administrator">Alta usuario administrador</a>
+                            <a class = "a2SideNavBar" href="/users/delete-administrator">Baja usuario administrador</a>
+                            <a class = "a2SideNavBar" href="/users/restore-password">Restablecer contraseña</a>
+                        <% } %>
+                    </div>
+            
+                    <div class="divMenuMobile">
+                        <% if (locals.isLogged && userLogged.id_users_categories != 4 ) { %>
+                            <div class = "a1SideNavBar">CURSOS</div>
+                            <a class = "a2SideNavBar" href="/courses/create-course">Crear curso</a>
+                            <a class = "a2SideNavBar" href="/courses/create-certificate">Diseñar certificado</a>
+                            <a class = "a2SideNavBar" href="/courses/start-course">Iniciar curso</a>
+                            <a class = "a2SideNavBar" href="/courses/my-courses">Mis cursos</a>
+                            <a class = "a2SideNavBar" href="/courses/view-courses">Ver formularios</a>
+                            <a class = "a2SideNavBar" href="/courses/import-data">Importar resultados</a>                
+                        <% } %>
+                    </div>
+
+                    <div class="divMenuMobile">
+                        <% if (locals.isLogged) { %>
+                            <div class = "a1SideNavBar">USUARIOS</div>
+                            <a class = "a2SideNavBar" href="/users/logout">Cerrar sesión</a>                
+                        <% } %>
+                    </div>
+                </div>
+            </i>        
+        </div>
+    <% } %>
+</div>
+
+
+
+<script type="module" src="/js/header.js"></script>
+
+
+
+
+

@@ -1,0 +1,8 @@
+/*studentsResults.ejs*/
+#studentsResultsTable{
+    height: 400px; /*to avoid overflow, it depends on the website landscape*/
+}
+
+#arppTable{
+    height: 200px; /*to avoid overflow, it depends on the website landscape*/
+}

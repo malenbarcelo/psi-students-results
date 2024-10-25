@@ -1,0 +1,27 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+<%- include('../partials/userLogged') %>
+
+<div class="div1">
+
+    <% if (refLink == 'startCourse') { %>
+        <h3 class="title1">Iniciar curso</h3>
+        <% } else { %>
+            <h3 class="title1">Listado de cursos</h3>
+    <% } %>
+
+    <div>
+        <% for( let i = 0; i < courses.length; i++ ) { %>
+            <div class="div43 <%= i%2==0 ? ' div49' : '' %>">
+                <a href="<%= refLink == 'startCourse' ? '/courses/start-course/' + courses[i].id : courses[i].url  %>" class="a3" target="_blank"><%= refLink == 'startCourse' ? courses[i].course_name : courses[i].course_name + ' (ID: ' + courses[i].id  +')' %></a>
+            </div>
+        <% } %>
+    </div>
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,148 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+<%- include('../partials/userLogged') %>
+
+<div class="mainBody">
+
+    <div class="notVisible" id="idUserCategory"><%= userLogged.id_users_categories %></div>
+    <div class="notVisible" id="companyName"><%= userLogged.users_companies.company_name %></div>
+    <div class="notVisible" id="courseId"><%= idCourse %></div>
+    <div class="mainTitle mbm" id="course"><%= course %></div>
+    <div class="subtitle mbm">RESULTADOS DEL FORMULARIO</div>
+
+    <!------MAIN FILTERS------>
+    <div id="srMainFilters" class="mbl">
+        
+        <div class="divInputsRow">
+            <% if (userLogged.id_user_categories == 1) { %>
+                <div class="divInput">
+                    <label class="label">Empresa</label>
+                    <select class="input il spl" id="filterCompany">
+                        <option value=""></option>
+                        <% companies.forEach(company => { %>
+                            <% if (company.company_name != 'PSI') { %>
+                                <option value="<%= company.company %>"><%= company.company %></option>
+                            <% } %>
+                        <% }) %>                
+                    </select>            
+                </div>
+            <% } %>
+            <div class="divInput">
+                <label class="label">Resultado</label>
+                <select class="input is spl" id="filterResult">
+                    <option value=""></option>
+                    <option value=1>Aprobados</option>
+                    <option value=0>Desaprobados</option>
+                                   
+                </select>            
+            </div>
+            <div class="divInput">
+                <label class="label">DNI</label>
+                <input type="text" class="input ixxs ipl" id="filterDni">                    
+            </div>
+            <div class="divInput">
+                <label class="label">Nombre y apellido</label>
+                <input type="text" class="input im ipl" id="filterName">
+                <ul class="predictedElements" id="ulFilterName"></ul>                    
+            </div>
+            <div class="divInput">
+                <label class="label">Desde</label>
+                <input type="date" class="input ixs ipl" id="filterFrom">                    
+            </div>
+            <div class="divInput">
+                <label class="label">Hasta</label>
+                <input type="date" class="input ixs ipl" id="filterUntil">                    
+            </div>
+            
+            <div class="divInput">
+                <i class="fa-solid fa-filter-circle-xmark unfilterIcon" id="unfilter"></i>
+            </div>
+        </div>    
+    </div>
+
+    <!------ELEMENTS TO PRINT------>
+    <form action="/courses/students-results/<%= userLogged.users_companies.company_name %>/<%= idCourse %>" method="POST" class="form1" id="printForm">
+        
+        <!------STUDENTS RESULTS------>
+        <div class="divTable" id="studentsResultsTable">
+
+            <div class="tableInfo" id="infoInfo">Cursos asociados</div>
+            <div class="tableInfo" id="obsInfo">Observaciones</div>
+            <div class="tableInfo" id="imageInfo">Subir foto</div>
+            <div class="tableInfo" id="checkInfo">Seleccionar</div>
+        
+            <table>
+                <thead>
+                    <tr>                    
+                        <th class="thCss thm">
+                            Empresa
+                        </th>
+                        <th class="thCss thFlex ths">
+                            <div>Fecha</div>
+                            <i class="fa-solid fa-arrow-up icon" id="dateUp"></i>
+                            <i class="fa-solid fa-arrow-down icon notVisible" id="dateDown"></i>
+                        </th>
+                        <th class="thCss ths">DNI</th>
+                        <th class="thCss thFlex thxxl">
+                            <div>Apellido y nombre</div>
+                            <i class="fa-solid fa-arrow-up icon" id="nameUp"></i>
+                            <i class="fa-solid fa-arrow-down icon notVisible" id="nameDown"></i>
+                        </th>
+                        <th class="thCss thl">Email</th>
+                        <th class="thCss thxs">Nota</th>
+                        <th class="thCss thxs">
+                            <i class="fa-solid fa-circle-info icon" id="infoIcon"></i>
+                        </th>
+                        <th class="thCss thxs">
+                            <i class="fa-regular fa-comment-dots icon" id="obsIcon"></i>
+                        </th>
+                        <th class="thCss thxs notVisible" id="thCamera">
+                            <i class="fa-solid fa-camera icon" id="imageIcon"></i>
+                        </th>
+                        <th class="thCss thxs notVisible" id="checkIcon"><input type="checkbox" name="selectAll" class="icon" id="thCheck"></th>
+                    </tr>
+                </thead>
+                <tbody id="studentsResultsBody"></tbody>
+            </table>
+        </div>
+
+        <!------DOWNLOAD BOX----->
+        <div id="srBoxDownload">
+
+            <div class="srDownloadTitle">DESCARGAR SELECCIONADOS</div>
+
+            <div id="studentsResultsDownloads">
+
+                <div class="studentsResultsDownload">
+                    <input type="checkbox" id="printCertificates" name="certificates">
+                    <label>Certificados</label>
+                </div>
+                
+                <div class="studentsResultsDownload">
+                    <input type="checkbox" id="printCredentials" name="credentials">
+                    <label>Credenciales</label>
+                </div>
+        
+                <button type="submit" class="srDivDownload">
+                    <i class="fa-solid fa-download" id="srDownload"></i>
+                </button>
+            
+            </div>
+            <!------ERRORS------>
+            <div class="studentsResultsDownload" id="srError">Debe seleccionar al menos un documento y un alumno</div>
+
+        </div>
+
+    </form>
+
+</div>
+
+<!----------LOADER---------->
+<div class="loader" id="studentsResultsLoader"></div>
+
+<!----------POPUPS---------->
+<%- include('../studentsResults/popupsARPP') %>
+<%- include('../studentsResults/popupsUSIPP') %>
+
+
+<script type="module" src="/js/studentsResults/studentsResults.js"></script>

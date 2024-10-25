@@ -1,0 +1,162 @@
+/*---------------------tables---------------------*/
+table{
+    margin: auto;
+    border-collapse: collapse;
+}
+
+thead{
+    position: sticky;
+    top:0;
+}/*to leave titles fixed*/ 
+
+.divTable{
+    overflow-y: auto;
+    width: fit-content;
+    margin: auto;
+}
+
+.thCss{
+    text-align: center;
+    background-color: black;
+    color: var(--color7);
+    padding: 4px;
+    font-weight: lighter;
+    height: 1.5rem;
+    font-size: 14px;
+}
+
+.thCss2{
+    text-align: center;
+    background-color: black;
+    color: var(--color7);
+    padding: 4px;
+    font-weight: lighter;
+    font-size: 13px;
+}
+
+.thFlex{
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.tableInfo{
+    font-size: 12px;
+    position: absolute;
+    display: none;
+    text-align: center;
+}
+
+/*sizes*/
+.thxs{
+    width: 35px;
+}
+
+.ths{
+    width: 100px;
+}
+
+.thm{
+    width: 150px;
+}
+
+.thl{
+    width: 200px;
+}
+
+.thxl{
+    width: 250px;
+}
+
+.thxxl{
+    width: 300px;
+}
+
+.thxxxxl{
+    width: 400px;
+}
+
+
+.thLeftBorder{
+    border-top-left-radius: 15px;
+}/*Add radius to left top border*/
+
+.thRightBorder{
+border-top-right-radius: 15px;
+}/*Add radius to right top border*/
+
+.thInfo{
+    font-size: 12px;
+    position: absolute;
+    display: none;
+    text-align: center;
+}
+
+.tableData{
+    position: absolute;
+    right: 6%;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    margin-top: 10px;
+}
+
+.tableDataLine{
+    display: flex;
+    position: relative;
+}
+
+.lineTitle{
+    font-weight: bold;
+    width: 100px;
+}
+
+.lineData{
+    width: 70px;
+    text-align: right;
+}
+
+.lineEdit{
+    position: absolute;
+    text-align: right;
+    left: 105%;
+    cursor: pointer;
+}
+
+/*------Tbody------*/
+.tBody1{
+    font-weight: lighter;
+    padding: 9px 0px;
+    font-size: 13px;
+}
+
+.tBody2{
+    font-weight: lighter;
+    padding: 2px 0px;
+    font-size: 13px;
+}
+
+.tBodyEven{
+    background-color: white;
+}/*background when row number is even*/
+
+.tBodyOdd{
+    background-color: var(--color7);
+}/*background when row number is odd*/
+
+.allowedIcon{
+    cursor: pointer;
+    color: black;
+}
+
+.notAllowedIcon{
+    color: rgb(159, 157, 157);
+}
+
+.errorIcon{
+    cursor: pointer;
+    color: var(--errorColor);
+}

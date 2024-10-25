@@ -1,0 +1,60 @@
+<%- include('../partials/head') %>
+
+<div class="notVisible" id="idCourse"><%= idCourse %></div>
+
+<div class="divEntryData">
+
+    <img src="/images/companyLogo.jpg" alt="PSI SmartServices" class="entryDataImage">
+    <div class="entryDataTitle mtxxxl mbm"><%= course %></div>
+    <div class="entryDataSubtitle mbm">Ingrese su DNI</div>
+
+    <div class="divInputsColumn mbxl">
+        <div class="divInput">
+            <input type="text" id="dni" name="dni" placeholder="DNI" class="input im ipm" autocomplete="off">
+            <div class="isError" id="dniError">Debe completar el DNI</div>
+        </div>
+    </div>
+
+    <div class="divButtonsRow">
+        <div class="btn1 bm" id="entryDataAccept">Aceptar</div>
+    </div>
+
+</div>
+
+<!----------upload image popup (uipp)---------->
+<div class="popup" id="uipp">
+    
+    <div class="popupContent" id="uippContent">
+
+        <div class="popupIcons">
+            <div class="popupIcon1"><i class="fa-solid fa-user"></i></div>
+            <div class="popupClose1" id="uippClose"><i class="fa-solid fa-rectangle-xmark popupCloseIcon"></i></div>
+        </div>
+
+        <div class="popupSubtitle1 mbl" id="uippTitle"></div>
+        
+        <form action="/apis/upload-image/:dni" method="POST" enctype="multipart/form-data">
+            <div class="divInputsColumn entryDataUpload">
+                <div clss="divInput">
+                    <input type="file" name="image" id="image" class="">
+                </div>
+            </div>
+            <div class="isError" id="uippError"></div>
+            
+            <div class="divButtonsRow mtl">
+                <button type="submit" class="btn1 bm" id="uippAccept">Continuar</button>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+<script type="module" src="/js/entryData/entryData.js"></script>
+
+
+
+
+
+
+

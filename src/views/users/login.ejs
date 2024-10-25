@@ -1,0 +1,41 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+
+<div class="div1 div2">
+
+    <h3 class="title1">INICIAR SESIÓN</h3>
+    
+    <form action="/users/login" method="POST" class="form1 mtxl">
+    
+        <div>
+            <input type="text" name="email" placeholder="Email" class="input1 <%= locals.errors && errors.email ? 'isInvalid' : null %>" value="<%= locals.oldData ? oldData.email : null %>">
+            <div class="divError1">
+                <% if (locals.errors && errors.email) { %>
+                    <%= errors.email.msg %>
+                <% } %>
+            </div>
+        </div>
+        
+        <div>
+            <input type="password" name="password" placeholder="Contraseña" class="input1 <%= locals.errors && errors.password ? 'isInvalid' : null %>" >
+            <div class="divError1">
+                <% if (locals.errors && errors.password) { %>
+                    <%= errors.password.msg %> 
+                <% } %>
+            </div>
+        </div>
+
+        <div class="mtxxl">
+            <button type="submit" class="button1">Ingresar</button>
+        </div>
+    
+    </form>
+
+</div>
+
+
+
+
+
+
+

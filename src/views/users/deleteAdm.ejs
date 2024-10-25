@@ -1,0 +1,46 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+<%- include('../partials/userLogged') %>
+
+<% if (locals.successMessage) { %>
+    <script>
+        alertify.success('Administrador eliminado con éxito');
+    </script>
+<% } %>
+
+<div class="div1">
+
+    <h3 class="title1">Eliminar administrador</h3>
+    
+    <form action="/users/delete-administrator" method="POST" class="form1">
+
+        <div>
+            <select name="selectAdm" class="input1 select1 <%= locals.errors && errors.selectAdm ? 'isInvalid' : null %>">
+                <option value="default" selected>--Seleccione un administrador--</option>
+                <% administrators.forEach(administrator => { %>
+                    <% if (administrator.company != 'PSI') { %>
+                        <option value="<%= administrator.id %>" <%= locals.oldData && oldData.selectAdm == administrator.id ? 'selected' : null %>><%= administrator.last_name + ', ' + administrator.first_name + ' --- ' + administrator.user_email + ' --- ' + administrator.company %></option>
+                    <% } %>
+                <% }) %>
+            </select>
+            <div class="divError1">
+                <% if (locals.errors && errors.selectAdm) { %>
+                    <%= errors.selectAdm.msg %>
+                <% } %>
+            </div>
+        </div>
+    
+        <div>
+            <button type="submit" class="button1 button2">Baja usuario</button>
+        </div>
+    
+    </form>
+
+</div>
+
+
+
+
+
+
+

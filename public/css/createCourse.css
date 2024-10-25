@@ -1,0 +1,64 @@
+.inputValidity{
+    width: 30px;
+    border-radius: 0px;
+    border: black solid 1px;
+    height: 20px;
+    text-align: center;
+    font-size: 12px;
+    background-color: rgb(240, 240, 247)
+}
+
+.inputValidity:focus{
+    outline:none
+}
+
+.validityLabel{
+    font-size: 12px;
+}
+
+.associateForm{
+    cursor: pointer;
+
+}
+
+.labelIncludesCretificate{
+    font-size: 12px;
+}
+
+.divCourseData{
+    border:rgb(195, 191, 191) solid 1px;
+    width: 250px;
+    margin:auto;
+    padding-top:5px;
+    padding-bottom:5px
+}
+
+.divIncludesCert{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.associateForm{
+    font-size: 12px;
+    font-weight: bold;
+    background-color: rgb(174, 171, 171);
+    width: 130px;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.associateForm:hover{
+    background-color: rgb(141, 138, 138);
+}
+
+.divSelect{
+    margin-bottom: 10px;
+}
+
+.selectAssociatedForm{
+    width: 500px;
+}

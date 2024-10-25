@@ -1,0 +1,71 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+<%- include('../partials/userLogged') %>
+
+<% if (locals.successMessage) { %>
+    <script>
+        alertify.success('Usuario creado con éxito');
+    </script>
+<% } %>
+
+<div class="div1">
+
+    <h3 class="title1">Alta de usuario administrador</h3>
+    
+    <form action="/users/create-administrator" method="POST" class="form1">
+
+        <div>
+            <select name="selectCompany" class="input1 select1 <%= locals.errors && errors.selectCompany ? 'isInvalid' : null %>">
+                <option value="default" selected>--Seleccione una institución--</option>
+                <% companies.forEach(company => { %>
+                    <% if (company.company_name != 'PSI') { %>
+                        <option value="<%= company.company %>" <%= locals.oldData && oldData.selectCompany == company.company ? 'selected' : null %>><%= company.company %></option>
+                    <% } %>
+                <% }) %>
+            </select>
+            <div class="divError1">
+                <% if (locals.errors && errors.selectCompany) { %>
+                    <%= errors.selectCompany.msg %>
+                <% } %>
+            </div>
+        </div>
+    
+        <div>
+            <input type="text" name="firstName" placeholder="Nombre del administrador" class="input1 <%= locals.errors && errors.firstName ? 'isInvalid' : null %>" value="<%= locals.oldData ? oldData.firstName : null %>">
+            <div class="divError1">
+                <% if (locals.errors && errors.firstName) { %>
+                    <%= errors.firstName.msg %>
+                <% } %>
+            </div>
+        </div>
+
+        <div>
+            <input type="text" name="lastName" placeholder="Apellido del administrador" class="input1 <%= locals.errors && errors.lastName ? 'isInvalid' : null %>" value="<%= locals.oldData ? oldData.lastName : null %>">
+            <div class="divError1">
+                <% if (locals.errors && errors.lastName) { %>
+                    <%= errors.lastName.msg %>
+                <% } %>
+            </div>
+        </div>
+
+        <div>
+            <input type="text" name="email" placeholder="Email del administrador" class="input1 <%= locals.errors && errors.email ? 'isInvalid' : null %>" value="<%= locals.oldData ? oldData.email : null %>">
+            <div class="divError1">
+                <% if (locals.errors && errors.email) { %>
+                    <%= errors.email.msg %>
+                <% } %>
+            </div>
+        </div>
+
+        <div>
+            <button type="submit" class="button1 button2">Alta usuario</button>
+        </div>    
+    </form>
+</div>
+
+
+
+
+
+
+

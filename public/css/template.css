@@ -1,0 +1,173 @@
+
+.divTemplate{
+    width: calc(100vw - 220px);
+    position: absolute;
+    left: 200px;
+}
+.templateSubTitle{    
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.certTempTitle{
+    margin: auto;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.logoTemplate{
+    height: 30px;
+}
+
+.signatureTemplate{
+    height: 50px;
+}
+
+.divLogosTemplate{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.divLogoCert{
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.divLogoImg{
+    padding: 3px;
+    border-radius: 5px;
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.divTemplate2{
+    width: 600px;
+    margin: auto;
+    margin-top: 10px;
+    padding-top:10px;
+    background-color: rgb(226, 222, 222);
+    border:rgb(192, 190, 190) solid 1px;
+    border-radius: 3px;
+    padding-bottom: 10px
+}
+
+.fileTemplate{
+    font-size: 10px;
+}
+
+.divTemplate3{
+    width: 700px;
+    margin: auto;
+    margin-top: 20px;
+    padding: 20px;
+    padding-top:10px;
+    background-color: rgb(226, 222, 222);
+    border-radius: 3px;
+}
+
+.inputCertificate{
+    border:none;
+    border-bottom: black solid 1px;
+    padding: 5px;
+    width: 500px;
+    font-family: 'Roboto', Sans-serif;
+    font-size: 12px;
+}
+
+.textareaCertificate{
+    padding: 5px;
+    border:none;
+    width: 500px;
+    font-family: 'Roboto', Sans-serif;
+    font-size: 12px;
+    height: 60px;
+}
+
+.inputCertificate:focus,.textareaCertificate:focus{
+    outline:none
+}
+
+.divInput{
+    text-align: center;
+    margin-top: 15px;
+}
+
+.divOther{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 300px;
+    margin: auto;
+    margin-top: 15px;
+    border-radius: 3px;
+    background-color: white;
+}
+.divNone{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 300px;
+    margin: auto;
+    margin-top: 8px;
+    border-radius: 3px;
+}
+
+.divRadioOther{
+    display: flex;
+    font-size: 12px;
+    justify-content: center;
+    align-items: center;
+}
+
+.divSubmitTemplate{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.selectTemplate{
+    text-align: center;
+    margin-top: 15px;
+}
+
+.certTemSelectCourse{
+    width: 500px;
+    background-color: rgb(226, 222, 222);
+    border-radius:0px;
+    border: none;
+    font-size: 12px;
+    height: 30px;
+    padding-left: 10px;
+    text-align: center;
+}
+
+.divErrorTemplate{
+    width: 600px;
+    margin-bottom: -10px;
+}
+
+.divErrorTemplate2{
+    width: 600px;
+}
+
+.divErrorTemplate3{
+    margin-bottom: 0px;
+}

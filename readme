@@ -1,0 +1,33 @@
+/*---Generals---*/
+npm init -y
+npm install express
+npm install ejs
+npm install method-override
+npm install multer
+npm install express-validator
+npm install express-session
+npm install bcryptjs
+npm install cors
+npm install --save googleapis
+npm install --save sharp
+npm install --save dotenv
+npm install node-cron
+npm install session-file-store
+npm install moment-timezone
+npm install cross-fetch
+
+/*---Sequelize---*/
+1. npm install --save sequelize-cli
+2. npm install --save sequelize
+3. npm install mysql2
+
+/*---Puppeteer---*/
+npm install puppeteer
+
+/*---excel---*/
+npm install exceljs
+npm install read-excel-file
+
+Resumed --->
+npm init -y
+npm install express ejs method-override multer express-validator express-session bcryptjs sequelize-cli sequelize mysql2 puppeteer exceljs read-excel-file node-cron session-file-store moment-timezone cors sharp googleapis dotenv node-cron cross-fetch

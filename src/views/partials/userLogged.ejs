@@ -1,0 +1,13 @@
+<div class="userLogged">
+    <% if (locals.isLogged) { %>
+        <div class="userLoggedName"><%= userLogged.first_name + ' ' + userLogged.last_name %></div>
+        <div class="userLoggedName" id="userLoggedCompany"><%= userLogged.users_companies.company_name %></div>
+        <div class="userLoggedLogout"><a href="/users/logout" class= "aUserLogged">Cerrar sesión</a></div> 
+    <% } %>
+</div>
+
+<div class="userLoggedMobile">
+    <% if (locals.isLogged) { %>
+        <div class="userLoggedNameMobile"><b><%= userLogged.first_name + ' ' + userLogged.last_name + ' - ' + userLogged.users_companies.company_name %></b></div>
+    <% } %>
+</div>

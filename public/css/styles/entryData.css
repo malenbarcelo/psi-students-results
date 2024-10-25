@@ -1,0 +1,84 @@
+
+.divEntryData{
+    border: black solid 2px;
+    width: 500px;
+    margin: auto;
+    margin-top: 100px;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.entryDataImage{
+    height: 35px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#entryData{
+    width: 30%;    
+    margin: auto;
+    margin-top: 20px;
+    padding: 30px;
+    border: black solid 2px;
+    background-color: var(--color4);
+}
+
+.entryDataTitle{
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+
+}
+
+.entryDataSubtitle{
+    font-size: 15px;
+    text-align: center;
+    font-weight: bold;
+
+}
+
+.entryDataUpload{
+    width: 350px;
+    border: black solid 1px;
+    padding: 10px 3px;
+    margin: auto;
+}
+
+@media (max-width:600px){
+    .entryDataImage{
+        height: 25px;
+    }
+    .divEntryData{
+        width: 95%;
+    }
+    .entryDataTitle{
+        font-size: 16px;
+    }
+    .entryDataSubtitle{
+        font-size: 13px;
+    }
+}
+
+@media (max-width:500px){
+    #uippContent{
+        width: 250px;
+        left: calc(50vw - 137px);
+        top:150px
+    }
+    .entryDataUpload{
+        width: 230px;
+        border: black solid 1px;
+        padding: 10px 3px;
+        margin: auto;
+        overflow: hidden; /* Esto evitará que el contenido se desborde */
+        white-space: nowrap; /* Evita que el contenido pase a la siguiente línea */
+        text-overflow: ellipsis;
+    }
+    .entryDataUpload input[type="file"] {
+        width: 100%; /* Ajusta el input al ancho disponible */
+        box-sizing: border-box; /* Asegura que el padding y el borde se incluyan en el ancho total */
+    }
+
+}
+

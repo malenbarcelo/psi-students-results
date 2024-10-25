@@ -1,0 +1,247 @@
+:root{
+    --color1:rgb(255,107,13);
+    --color2: black;
+    --color3: white;
+    --color4: rgb(240, 240, 240);
+    
+  }
+
+
+.srDivBody{
+    width: 83%;
+    margin-left: 17%;
+
+}
+
+.srDivCompanies{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.srInput1{
+    border-radius:6px;
+    border: var(--color2) solid 1px;
+    font-size: 13px;
+    height: 30px;
+    width:300px;
+    padding-left: 10px;
+    text-align: center;
+}
+
+.srInput1:focus{
+    outline:none;
+
+}
+
+.srDivInputDate{
+    position: relative;
+}
+
+.srInputsDate{
+    display: flex;
+    justify-content: center;
+    column-gap: 8px;
+    margin-top: -5px;
+}
+
+.srInputDate{
+    width: 120px;
+
+}
+
+.srLabelDate{
+    font-size: 13px;
+    position: absolute;
+    top: -8px;
+    left: 8px;
+    background-color: white;
+    padding: 0px 5px;
+}
+
+.srFilterDate{
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+#srCancelFilterBtn{
+    display: none;
+}
+
+.srDivErrorDate{
+    text-align: center;
+    color:rgb(221, 7, 7);
+    font-size: 14px;
+    margin-top: 2px;
+    margin-bottom: 30px;
+}
+
+.srTableTitle1{
+    font-size: 14px;
+    background-color: var(--color2);
+    color: var(--color3);
+    width: 95px;
+    padding: 8px 0px;
+}
+
+.srTableTitle2{
+    font-size: 14px;
+    background-color: var(--color2);
+    color: var(--color3);
+    width: 250px;
+    padding: 8px 0px;
+}
+
+.srTableTitle3{
+    font-size: 14px;
+    background-color: var(--color2);
+    color: var(--color3);
+    width: 110px;
+    padding: 8px 0px;
+}
+
+.srTableTitle4{
+    font-size: 14px;
+    background-color: var(--color2);
+    color: var(--color3);
+    padding: 8px 0px;
+    width: 50px;
+}
+
+.srOrderDate{
+    position: absolute;
+    left: 80px;
+    top: 14px;
+    z-index: 2;
+    font-size: 10px;
+}
+
+.srOrderName{
+    position: absolute;
+    left: 190px;
+    top: 14px;
+    z-index: 2;
+    font-size: 10px;
+}
+
+.srOrderDate:hover, .srOrderName:hover {
+    cursor: pointer;
+}
+
+.srDivPrint{
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 15px;
+    margin-bottom: 6px;
+}
+
+.srDivPrintNotVisible{
+    display: none
+}
+
+.srLabelPrint{
+    font-size: 14px;
+}
+
+#srDownload{
+    cursor: pointer;
+}
+
+.srDivDownload{
+    background-color: transparent;
+    border: none;
+    position: relative;
+}
+
+.srInfoDownload{
+    position: absolute;
+    font-size: 11px;
+    width: 140px;
+    color: rgb(98, 97, 97);
+    text-align: center;
+    padding: 3px 0px;
+    border-radius: 3px;
+    top:190px;
+    left: 530px;
+    display: none;
+}
+
+.srDivDownload:hover .srInfoDownload {
+    display: block;
+    
+}
+
+
+
+
+.srTd1{
+    font-size: 12px;
+    background-color: var(--color4);
+    text-align: center;
+    padding: 8px 0px
+}
+
+.srTd2{
+    font-size: 12px;
+    background-color: var(--color3);
+    text-align: center;
+    padding: 8px 0px
+}
+
+.srTable{
+    margin: auto;
+    border-collapse: collapse
+}
+
+.srTitle1{
+    font-size: 20px;
+    color:var(--color1);
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 500px;
+}
+
+.srDivFilterResults{
+    display: flex;
+    column-gap: 15px;
+    justify-content: center;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+.srFilterResults{
+    font-size: 14px;
+    width: 180px;
+}
+
+.srFilterResults:hover{
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.srDivErrors{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: end;
+    font-size: 13px;
+    font-weight: bold;
+    color:rgb(221, 7, 7);
+}
+
+/*.srDivError{    
+    font-size: 13px;
+    font-weight: bold;
+    color: rgb(221, 7, 7);
+    margin-top:1px;
+    margin-right: 0px;
+    width:300px;
+    border: green solid 1px
+}*/
+
+
+

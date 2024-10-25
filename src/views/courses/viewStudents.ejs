@@ -1,0 +1,31 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+<%- include('../partials/userLogged') %>
+
+<div class="div1">
+
+    <h3 class="title1">Mis alumnos</h3>
+
+    <div class="div44">
+        <select name="selectStudent" id ="selectStudent" class="input1 select1 select3">
+            <option value="default" selected>--Seleccione un alumno--</option>
+            <% uniqueSelectList.forEach(item => { %>
+                <option value="<%= item.dni %>"><%= item.name %></option>
+            <% }) %>
+        </select>
+    </div>
+
+    <h3 class="title2 notVisible" id="titleCoursesDone">Cursos realizados</h3>
+
+    <div id="studentData"></div>
+
+</div>
+
+<script type="module" src="/js/studentData.js"></script>
+
+
+
+
+
+
+

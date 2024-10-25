@@ -1,0 +1,59 @@
+.tableViewForms{
+    margin:auto
+}
+
+.th1ViewForms{
+    font-size: 12px;
+    background-color: rgb(206, 200, 200);
+    padding: 5px;
+}
+
+.th2ViewForms{
+    font-size: 12px;
+    font-weight: lighter;
+    background-color: rgb(244, 241, 241);
+    padding: 2px;
+}
+
+.thCourse{
+    width: 400px;
+}
+
+.thValidity, .thCertificate, .thAssociatedForms {
+    width: 50px;
+}
+
+.thId, .thEdit{
+    width: 20px
+}
+
+.divCreateCourse{
+    background-color: rgb(206, 200, 200);
+    width: 100px;
+    margin: auto;
+    text-align: center;
+    font-size: 12px;
+    padding: 3px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    margin-top: -10px;
+}
+
+.divCreateCourse:hover{
+    background-color: grey;
+    color: white;
+
+}
+
+.aViewForms{
+    text-decoration: none;
+    color: black;
+}
+
+.faEdit{
+    color: black;
+}
+
+.faEdit:hover{
+    color: rgb(120, 118, 118);
+}

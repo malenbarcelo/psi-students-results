@@ -1,0 +1,107 @@
+<%- include('../partials/head') %>
+
+<div class="certDiv1">
+    <div class="certDiv2">
+
+        <% if (documentTemplate.id_courses == 4 || documentTemplate.id_courses == 5 || documentTemplate.id_courses == 33 || documentTemplate.id_courses == 34 || documentTemplate.id_courses == 35) { %>
+            <div class="certDivStudentPhoto">
+                <img src="<%= '/images/studentsPhotosLQ/' + studentImage  %>" class="certStudentPhoto" alt="<%= documentData.last_name + ' ' + documentData.first_name %>">
+            </div>
+        <% } %>
+        
+        <div class="certDivHeader">
+            <div class="certDivHeaderLogo">
+                <img src="/images/documentsImages/psiLogo.png" alt="Logo PSI" class="certPsiLogo">
+            </div>
+            <% if (documentTemplate.id_courses == 4 || documentTemplate.id_courses == 5 || documentTemplate.id_courses == 33 || documentTemplate.id_courses == 34) { %>
+                <div class="certDivHeaderLogo">
+                    <img src="/images/documentsImages/elVientoBlanco.jpg" alt="Logo El viento blanco" class="certVientoLogo">
+                </div>
+            <% } %>
+            <% if (documentTemplate.id_courses == 35) { %>
+                <div class="certDivHeaderLogo">
+                    <img src="/images/documentsImages/sfi.jpg" alt="sfi" class="certVientoLogo">
+                </div>
+            <% } %>
+            
+            <div class="certHeaderData">
+                <% if (documentTemplate.id_courses == 33) { %>
+                    <div class="certHeaderDataLine">Certificado de aprobación curso teórico</div>
+                    <% } else { %>
+                        <div class="certHeaderDataLine">Certificado de aprobación curso teórico-práctico</div>
+                <% } %>                
+                <div class="certHeaderDataLine">ARGENTINA, Neuquén <%= issueDateString %></div>
+                <div class="certHeaderDataLine">Código: <%= documentCode %></div>
+            </div>
+        </div>
+    
+        <div class="certDivText">
+            <div class="certStudentName"><%= documentData.last_name.toUpperCase() + ' ' + documentData.first_name.toUpperCase() %></div>
+            <div class="certStudentDni">DNI: <%= documentData.dni %></div>
+            
+            <% if (documentTemplate.id_courses == 4 || documentTemplate.id_courses == 5 || documentTemplate.id_courses == 34 || documentTemplate.id_courses == 35) { %>
+                <div class="certDrivingText">
+                    Aprobó el curso teórico (6hs) / práctico (2hs) <b><%= documentData.form_name.toUpperCase() %> </b>
+                </div>
+            <% } %>
+            <% if (documentTemplate.id_courses == 33) { %>
+                <div class="certDrivingText">
+                    Aprobó el curso teórico <b><%= documentData.form_name.toUpperCase() %> </b>
+                </div>
+            <% } %>
+            <% if (documentTemplate.id_courses != 4 && documentTemplate.id_courses != 5 && documentTemplate.id_courses != 33 && documentTemplate.id_courses != 34 && documentTemplate.id_courses != 35) { %>
+                <div class="certCourseName">
+                    <%= documentTemplate.course_name %>
+                </div>
+            <% } %>
+            
+            <div class="certValidity <%= expirationDateString == '00/00/0000' ? 'certTransparent' : null %>">
+                Vigente hasta el <%= expirationDateString %>
+            </div>
+
+            <div class="certNormatives <%=  documentTemplate.certificate_normatives == '' ? 'certTransparent' : null %>">
+                <%= documentTemplate.certificate_normatives == '' ? 'Sin normativas' : documentTemplate.certificate_normatives %>
+            </div>
+
+            <% if (documentTemplate.id_courses == 4 || documentTemplate.id_courses == 5 || documentTemplate.id_courses == 3 || documentTemplate.id_courses == 34) { %>
+                <div class="certDrivingText2">
+                    El dia <%= documentData.date.getDate() + ' de ' + issueMonth + ' de ' + documentData.date.getFullYear() %>, en FUNDACION EL VIENTO BLANCO y PSI SMART SERVICES SA; Registro
+                    Nacional de Antecedentes en Educación y Capacitación Vial; Inscripción N° 650 - Disposición N°
+                    380/12 - Disposición Nº 865/2021
+                </div>
+            <% } %>
+            <% if (documentTemplate.id_courses == 35) { %>
+                <div class="certDrivingText2">
+                    El dia <%= documentData.date.getDate() + ' de ' + issueMonth + ' de ' + documentData.date.getFullYear() %>, en SFI SOLUCIONES SAS y PSI SMART SERVICES SA; Registro
+                    Nacional de Antecedentes en Educación y Capacitación Vial; Disposición N°
+                    380/12 - Disposición Nº 973/2023
+                </div>
+            <% } %>
+        </div>
+    
+        <div class="certDivFooter">
+            <div class="certTriangle"></div>
+            <div class="certDivSignature">
+                <img src="/images/documentsImages/<%= documentTemplate.signature1_image %>" alt="Firma1" class="certImgSignature">
+            </div>
+    
+            <% if (documentTemplate.signature2_image) { %>
+                <div class="certDivSignature">
+                    <img src="/images/documentsImages/<%= documentTemplate.signature2_image %>" alt="Firma2" class="certImgSignature">
+                </div>
+            <% } %>
+
+            <% if (documentTemplate.certificate_logo) { %>
+                <div class="certDivFooterLogo">
+                    <img src="/images/documentsImages/<%= documentTemplate.certificate_logo %>" alt="Logo pie de página" class="certFooterLogo <%= documentTemplate.id_courses == 4 || documentTemplate.id_courses == 5  || documentTemplate.id_courses == 33 || documentTemplate.id_courses == 34  || documentTemplate.id_courses == 35 ? 'certDivDrivingFooterLogo' : null %>">
+                </div>
+            <% } %>
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+

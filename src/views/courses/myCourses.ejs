@@ -1,0 +1,41 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+<%- include('../partials/userLogged') %>
+
+<div class="div1">
+
+    <h3 class="title1">MIS CURSOS</h3>
+
+    <div class="divFlex7">
+        <% coursesData.forEach(course => { %>
+            <div class="div233"><a href= "<%= '/courses/students-results/' + userLogged.users_companies.company_name + '/' + course.courseId  %>" class="a2">
+                
+                <div class="div24">
+                    <%= course.form_name  %>
+                </div>
+
+                <% if (locals.isLogged && userLogged.id_users_categories != 4) { %>
+                    <div class="div25">
+                        <b>Cantidad de empresas:</b> <%= course.companiesQty  %>
+                    </div>
+                <% } %>
+
+                <div class="div25">
+                    <b>Cantidad de alumnos:</b> <%= course.studentsQty  %>
+                </div>
+
+                <div class="div25">
+                    <b>Aprobados: </b> <span class="span1"><%= course.passed + ' (' + course.passedPercentage + '%)' %></span>
+                </div>
+
+                <div class="div25">
+                    <b>Desaprobados: </b><span class="span2"><%= course.notPassed + ' (' + course.notPassedPercentage + '%)' %></span>
+                </div>
+            </a>
+                </div>
+        <% }) %>
+    </div>
+</div>
+
+
+

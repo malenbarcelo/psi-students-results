@@ -1,0 +1,160 @@
+/*---------------------Colors---------------------*/
+:root{   
+    --errorColor:rgb(221, 7, 7);
+    --color7:#dfdbdb;
+    --color8:#FF6501;
+    --color9:#575656;
+    --color10:#848282;    
+}
+
+/*-----------------------------uls-----------------------------*/
+ul {
+    list-style-type: none; 
+    padding: 0; 
+}
+
+/*---------------------titles---------------------*/
+.mainTitle{
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.subtitle{
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/*---------------------errors---------------------*/
+.isError{
+    color: var(--errorColor);
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 2px;
+    display: none;
+}
+
+.invalidInput{
+    border: var(--errorColor) solid 2px !important;
+}
+
+.invalidLabel{
+    color: var(--errorColor);
+    font-weight: bold;
+}
+
+/*---------------------display---------------------*/
+.notVisible{
+    display: none;
+}
+
+/*---------------------margins---------------------*/
+
+.mbxs{
+    margin-bottom: 5px;
+}
+
+.mbs{
+    margin-bottom: 10px;
+}
+
+.mbm{
+    margin-bottom: 15px;
+}
+
+.mbl{
+    margin-bottom: 30px;
+}
+
+.mtl{
+    margin-top: 30px;
+}
+
+.mtxl{
+    margin-top: 40px;
+}
+
+.mtxxl{
+    margin-top: 50px;
+}
+
+.mbxl{
+    margin-bottom: 45px;
+}
+
+.mbxxl{
+    margin-bottom: 60px;
+}
+
+.mtxxxl{
+    margin-top: 80px;
+}
+
+/*---------------------loader---------------------*/
+.loader {
+    border: 10px solid var(--color7);
+    border-radius: 50%;
+    border-top: 10px solid black;
+    width: 40px;
+    height: 40px;
+    animation: spin 3s linear infinite;
+    display: none;
+    position: absolute;
+    
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#studentsResultsLoader{
+    top: 55%;
+    left: calc(59% - 50px);
+}
+
+/*-----------------------------icons-----------------------------*/
+.icon{
+    cursor: pointer;
+    color: white;
+}
+
+.unfilterIcon{
+    cursor: pointer;
+    font-size: 17px;
+}
+
+/*---------------------colors---------------------*/
+.redColor{
+    color:var(--errorColor)
+}
+.greenColor{
+    color: green;
+}
+.yellowColor{
+    color:rgb(204, 204, 2)
+}
+
+/*---------------------predicted items---------------------*/
+.predictedElements{
+    display: none;
+    position: absolute;
+    top:60%;
+    width: 99%;
+    border: black solid 1px;
+    background-color: white;
+    z-index: 1;
+    max-height: 400px;
+    overflow-y: auto;
+    text-align: center;
+}
+.liPredictedElements{
+    font-size: 12px;
+    padding: 5px 0px 5px 3px;
+    cursor: pointer;
+}
+.predictedElementFocused{
+    background-color:var(--color7);
+}

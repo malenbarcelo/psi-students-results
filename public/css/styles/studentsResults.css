@@ -1,0 +1,109 @@
+.divStudentsResults{
+    width: max-content;
+    margin:auto;
+
+}
+
+.studentsResultsChecks{
+    padding: 8px;
+    border: var(--color7) solid 2px;
+    display: flex;
+    justify-content: center;
+    column-gap: 10px;
+    row-gap: 8px;
+    background-color: var(--color7);
+    width: 250px;
+    margin: auto;
+}
+
+.studentsResultsCheck{
+    font-size: 13px;
+    font-weight: lighter;
+    display: flex;
+    align-items: center;
+}
+
+#srBoxDownload{
+    border: black solid 2px;
+    padding: 5px 10px;
+    width: 300px;
+    margin: auto;
+    margin-top: 22px;
+}
+
+.srDownloadTitle{
+    font-size: 13px;
+    font-weight: bold;
+}
+
+#studentsResultsDownloads{
+    display: flex;
+    column-gap: 10px;
+    row-gap: 8px;
+    margin: auto;
+    margin-top: 5px;
+    justify-content: center;
+    width: fit-content;
+}
+
+.studentsResultsDownload{
+    font-size: 13px;
+    font-weight: lighter;
+    display: flex;
+    align-items: center;
+}
+
+#srError{
+    color: var(--errorColor);
+    font-weight: bold;
+    font-size: 12px;
+    background-color: white;
+    display: none;
+    text-align: center;
+}
+.srObsDiv{
+    position: relative;
+}
+
+.srObs{
+    border: grey solid 1px;
+    background-color: rgb(223, 220, 220);
+    padding: 3px 8px 8px 8px;
+    width: 300px;
+    position: absolute;
+    left: -310px;
+    top: 50%;
+    display: none;
+}
+
+.srObsTitle{
+    margin-top: -10px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+#srObstText{
+    font-size: 13px;
+}
+
+.srObsIcon1{
+    font-size: 13px;
+}
+
+.srObsIcon2{
+    font-size: 15px;
+    cursor: pointer;
+}
+
+/*popupsARPP.ejs*/
+#arppNoAssociatedForms{
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: grey;
+}
+

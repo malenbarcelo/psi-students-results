@@ -1,0 +1,55 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+<%- include('../partials/userLogged') %>
+
+<div class="div1">
+
+    <h3 class="title1">Listado de formularios</h3>
+
+    <a href="/courses/create-course" class="aViewForms">
+        <div class="divCreateCourse">Crear formulario</div>
+    </a>
+    
+
+    <div class="divTableViewForms">
+        <table class="tableViewForms">
+            <thead>
+                <tr>
+                    <th class="th1ViewForms thCourse">
+                        Nombre del curso
+                    </th>
+                    <th class="th1ViewForms thValidity">Validez (meses)</th>
+                    <th class="th1ViewForms thCertificate">Habilita certificado</th>
+                    <th class="th1ViewForms thAssociatedForms">Formularios asociados</th>
+                    <th class="th1ViewForms thId">ID</th>
+                    <th class="th1ViewForms thEdit"><i class="fa-regular fa-pen-to-square aEdit2"></i></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for( let i = 0; i < courses.length; i++ ) { %>
+                    <tr>
+                        <th class="th2ViewForms"><%= courses[i].course_name %></th>
+                        <th class="th2ViewForms"><%= courses[i].validity == 0 ? '-' : courses[i].validity %></th>
+                        <th class="th2ViewForms"><%= courses[i].includes_certificate == 1 ? 'si' : 'no' %></th>
+                        <th class="th2ViewForms"><%= courses[i].associatedForms.length %></th>
+                        <th class="th2ViewForms"><%= courses[i].id %></th>
+                        <th class="th2ViewForms">
+                            <a href="/courses/create-course %>">
+                                <i class="fa-regular fa-pen-to-square faEdit"></i>
+                            </a>
+                            
+                        </th>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+
+
+
+
+

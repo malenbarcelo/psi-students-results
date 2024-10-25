@@ -1,0 +1,11 @@
+node_modules
+package-lock.json
+package.json
+sqlScripts
+prdToDev.js
+devToPrd.js
+studentsPhotosLQ
+studentsPhotos
+sessions
+credentials
+credentialsGoogleSheets.json
