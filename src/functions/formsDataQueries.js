@@ -4,6 +4,66 @@ const sequelize = require('sequelize')
 const { Op, literal, fn, col} = require('sequelize')
 
 const formsDataQueries = {
+    getData: async() => {
+        const data = await db.Forms_data.findAll({
+            attributes: [
+                'form_name',
+                'dni',
+                [sequelize.fn('JSON_ARRAYAGG', sequelize.literal(`
+                    JSON_OBJECT(
+                        'id', Forms_data.id,
+                        'date', Forms_data.date,
+                        'email', Forms_data.email,
+                        'grade', Forms_data.grade,
+                        'last_name', Forms_data.last_name,
+                        'first_name', Forms_data.first_name,
+                        'company', Forms_data.company
+                    )
+                `)), 'results']],
+            group: ['form_name', 'dni'],
+            include: [{
+                association: 'forms_data_courses',
+                where:{
+                    includes_certificate: { [Op.ne]: 0 },
+                    validity: { [Op.ne]: 0 }
+                }
+            }],
+            raw:true,
+            nest:true
+        })
+        return data
+    },
+    getDataFiltered: async(formName,dni) => {
+        const data = await db.Forms_data.findAll({
+            attributes: [
+                'form_name',
+                'dni',
+                [sequelize.fn('JSON_ARRAYAGG', sequelize.literal(`
+                    JSON_OBJECT(
+                        'id', id,
+                        'date', date,
+                        'email', email,
+                        'grade', grade,
+                        'last_name', last_name,
+                        'first_name', first_name,
+                        'company', company
+                    )
+                `)), 'results']],
+            group: ['form_name', 'dni'],
+            where:{
+                form_name: formName,
+                dni:dni
+            },
+            limit:100,
+            raw:true
+        })
+        return data
+    },
+
+
+
+
+
     courseData: async(courseId) => {
         try{
             const allData = await db.Forms_data.findAll({

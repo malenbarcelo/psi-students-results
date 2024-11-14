@@ -35,6 +35,7 @@ const apisController = {
 
         //get associated forms
         const courseId = await coursesQueries.courseId(courseName)
+        const courseInfo = await coursesQueries.courseDataByName(courseName)
         const courseAssociations = await coursesQueries.courseAssociations(courseId)
 
         //findout if there are intermediate associated forms
@@ -112,8 +113,9 @@ const apisController = {
           }
         })
 
-        //add aditional data      
+        //add aditional data    
         coursesData.forEach(cd => {
+          
           const passGrade = cd.pass_grade
           const includesCertificate = cd.includes_certificate
           cd.students_results = cd.students_results.map(sr => ({
@@ -132,13 +134,37 @@ const apisController = {
         const coursesToGetData = await coursesQueries.coursesData(coursesToGet)
         studentsResults.forEach(sr => {
           const dni = sr.dni
+          const date = new Date()
+          const dateArg = new Date(date.getTime() + (-3 * 60 * 60 * 1000))
+          sr.validity = courseInfo.validity
+          sr.today = dateArg
           sr.associatedResults = []
           sr.associatedCourses = coursesToGetData.filter( c => c.id != courseId)
           associationsStudentsResults.forEach(asr => {
             const filteredResults = asr.students_results.filter(student => student.dni == dni)
             sr.associatedResults.push(filteredResults.length == 0 ? {data: 'noInfo'} : filteredResults[0])
           })
+
+          let notPassedAssociations = 0
+          sr.associatedResults.forEach(ar => {
+            if (ar.data == 'noInfo' || ar.passed == 0) {
+              notPassedAssociations += 1
+            }
+          })
+
+          sr.notPassedAssociations = notPassedAssociations
+          sr.printCertificate = (sr.includesCertificate == 0 || sr.passed == 0 || notPassedAssociations > 0) ? 0 : 1
+          const expirationDate = new Date(sr.date)
+          expirationDate.setMonth(expirationDate.getMonth() + courseInfo.validity)
+          
+          const daytToExpiracion = (expirationDate - dateArg) / (1000 * 60 * 60 * 24)
+          sr.expirationDate = sr.printCertificate == 0 ? '-' : expirationDate
+          sr.daysToExpiration =  sr.printCertificate == 0 ? '-' : parseInt(daytToExpiracion)
+          
+
         })
+
+        console.log('hola')
 
         return res.status(200).json(studentsResults)
 

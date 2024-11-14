@@ -22,7 +22,7 @@ thead{
     padding: 4px;
     font-weight: lighter;
     height: 1.5rem;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .thCss2{
@@ -137,6 +137,12 @@ border-top-right-radius: 15px;
     font-weight: lighter;
     padding: 2px 0px;
     font-size: 13px;
+}
+
+.tBody3{
+    font-weight: lighter;
+    padding: 6px 0px;
+    font-size: 12px;
 }
 
 .tBodyEven{

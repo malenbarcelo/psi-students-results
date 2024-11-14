@@ -52,6 +52,11 @@ module.exports = (sequelize, DataTypes) => {
          as: 'forms_data',
          foreignKey: 'form_name',
          sourceKey: 'course_name'
+      }),
+      Course.hasMany(models.Associated_forms, {
+         as: 'associated_courses',
+         foreignKey: 'id_forms',
+         sourceKey: 'id'
       })
    }
 

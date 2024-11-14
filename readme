@@ -30,4 +30,4 @@ npm install read-excel-file
 
 Resumed --->
 npm init -y
-npm install express ejs method-override multer express-validator express-session bcryptjs sequelize-cli sequelize mysql2 puppeteer exceljs read-excel-file node-cron session-file-store moment-timezone cors sharp googleapis dotenv node-cron cross-fetch
+npm install express ejs method-override multer express-validator express-session bcryptjs sequelize-cli sequelize mysql2 exceljs read-excel-file node-cron session-file-store moment-timezone cors sharp googleapis dotenv node-cron cross-fetch puppeteer

@@ -47,8 +47,10 @@ app.use(session({
 app.use(userLoggedMiddleware)
 
 //get forms data
-cron.schedule('*/5 * * * *', cronController.getFormsData)
-//cron.schedule('* * * * *', cronController.getFormsData)
+cron.schedule('*/15 * * * *', cronController.getFormsData)
+//cron.schedule('*/0.5 * * * *', cronController.sendExpirationEmails)
+//cronController.sendExpirationEmails()
+
 
 //Declare and listen port
 const APP_PORT = 3000

@@ -11,23 +11,32 @@ async function printTableSR(dataToPrint) {
 
     dataToPrint.forEach(element => {
 
-        const rowClass = counter % 2 == 0 ? 'tBody1 tBodyEven' : 'tBody1 tBodyOdd'
+        const rowClass = counter % 2 == 0 ? 'tBody3 tBodyEven' : 'tBody3 tBodyOdd'
 
-        let notPassedAssociations = 0
-        element.associatedResults.forEach(ar => {
-            if (ar.data == 'noInfo' || ar.passed == 0) {
-                notPassedAssociations += 1
-            }
-        })
+        // let notPassedAssociations = 0
+        // element.associatedResults.forEach(ar => {
+        //     if (ar.data == 'noInfo' || ar.passed == 0) {
+        //         notPassedAssociations += 1
+        //     }
+        // })
         
-        const color = element.passed == 0 ? 'redColor' : (notPassedAssociations > 0 ? 'yellowColor' : 'greenColor')
+        //const color = element.passed == 0 ? 'redColor' : (notPassedAssociations > 0 ? 'yellowColor' : 'greenColor')
+        const color = element.passed == 0 ? 'redColor' : (element.notPassedAssociations > 0 ? 'yellowColor' : 'greenColor')
         const camera = element.student_image.length != 0 ? '' : '<i class="fa-solid fa-camera errorIcon" id="image_' + element.id + '"></i>'
+        
         const checkIcon = (camera == '' && color == 'greenColor') ? '<input type="checkbox" name="' + element.id + '" id="check_' + element.id + '" class="checkbox1">' : ''
 
         //complete downloadAlloweded
         if (camera == '' && color == 'greenColor') {
             srg.downloadAlloweded.push(element.id)
         }
+
+        //get expiration color
+        let expirationColor = ''
+        if (element.validity != 0 && color == 'greenColor') {
+            expirationColor = element.daysToExpiration < 30 ? 'redColor' : element.daysToExpiration < 60 ? 'yellowColor' : 'greenColor'            
+        }
+        const daysToExpiration = element.daysToExpiration <= 0 ? 'vencido' : (parseInt(element.daysToExpiration) + ' días')
 
         //complete observations
         let observations = ''
@@ -50,6 +59,8 @@ async function printTableSR(dataToPrint) {
                 <th class="${rowClass}">${element.last_name + ', ' + element.first_name}</th>
                 <th class="${rowClass}">${element.email}</th>
                 <th class="${rowClass + ' ' + color}">${(element.grade * 100).toFixed(2) + '%'}</th>
+                <th class="${rowClass}">${element.validity == 0 ? '-' : element.validity}</th>
+                <th class="${rowClass + ' ' + expirationColor}">${(element.validity == 0 || color != 'greenColor') ? '-' : dateToString(element.expirationDate) + '<br>' + daysToExpiration}</th>
                 <th class="${rowClass}"><i class="fa-solid fa-circle-info allowedIcon" id="info_${element.id}"></i></th>
                 <th class="${rowClass}">${observations}</th>
         `
@@ -95,7 +106,6 @@ function srEventListeners(dataToPrint) {
                 arppNoAssociatedForms.style.display = 'flex'
                 arppTable.style.display = 'none'
             }else{
-                console.log(element)
                 arppNoAssociatedForms.style.display = 'none'
                 printAssociatedResults(element)
                 arppTable.style.display = 'block'

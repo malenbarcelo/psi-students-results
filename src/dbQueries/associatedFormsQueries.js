@@ -4,10 +4,22 @@ const { Op, fn, col } = require('sequelize')
 const model = db.Associated_forms
 
 const associatedFormsQueries = {
+    getAssociatedForms: async(courseId) => {
+        const data = await model.findAll({
+            where: {
+                [Op.or]: [
+                    { id_forms: courseId },
+                    { id_associated_form: courseId }
+                ]
+            },
+            raw:true
+        })
+        return data
+    },
     courseAssociatedForms: async(courseId) => {
         const forms = await model.findAll({
             where:{
-            id_forms:courseId
+                id_forms:courseId
             },
             raw:true
         })
@@ -16,7 +28,7 @@ const associatedFormsQueries = {
     findAssociatedForm: async(courseId) => {
         const forms = await model.findAll({
             where:{
-            id_associated_form:courseId
+                id_associated_form:courseId
             },
             raw:true
         })

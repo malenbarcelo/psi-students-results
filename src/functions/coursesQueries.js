@@ -72,7 +72,7 @@ const formsDataQueries = {
                 where:{
                     id:idCourses
                 },
-                attributes:[['id','courseId'],['course_name','form_name'],['pass_grade','pass_grade'],['includes_certificate','includes_certificate']],
+                attributes:[['id','courseId'],['course_name','form_name'],['pass_grade','pass_grade'],['includes_certificate','includes_certificate'],['validity','validity']],
                 nest:true
             })
             return courses
@@ -143,6 +143,17 @@ const formsDataQueries = {
                 where:{id_courses:courseId}
             })
             return template
+        }catch(error){
+            return res.send('Ha ocurrido un error')
+        }
+    },
+    courseDataByName: async(courseName) => {
+        try{
+            const courseData = await db.Courses.findOne({
+                where:{course_name:courseName},
+                raw:true,
+            })
+            return courseData
         }catch(error){
             return res.send('Ha ocurrido un error')
         }
