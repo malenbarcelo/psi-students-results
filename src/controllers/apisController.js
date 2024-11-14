@@ -157,14 +157,14 @@ const apisController = {
           const expirationDate = new Date(sr.date)
           expirationDate.setMonth(expirationDate.getMonth() + courseInfo.validity)
           
-          const daytToExpiracion = (expirationDate - dateArg) / (1000 * 60 * 60 * 24)
-          sr.expirationDate = sr.printCertificate == 0 ? '-' : expirationDate
-          sr.daysToExpiration =  sr.printCertificate == 0 ? '-' : parseInt(daytToExpiracion)
+          const daysToExpiration = (expirationDate - dateArg) / (1000 * 60 * 60 * 24)
+          sr.expirationDate = sr.validity == 0 ? '-' : expirationDate
+          sr.daysToExpiration =  sr.validity == 0 ? '-' : parseInt(daysToExpiration)
           
 
         })
 
-        console.log('hola')
+        console.log(studentsResults.filter(sr => sr.dni == '24123987'))
 
         return res.status(200).json(studentsResults)
 
