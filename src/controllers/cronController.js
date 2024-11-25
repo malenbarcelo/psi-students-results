@@ -1,13 +1,17 @@
 const {addFormsData} = require('../functions/addFormsData')
-const { getStudentsResults } = require('../functions/getStudentsResults')
+const {completeFormsData} = require('../functions/completeFormsData')
+const { getDataToSend } = require('../functions/getDataToSend')
 const dominio = require('../functions/dominio')
 
 const cronController = {
     getFormsData: async(req,res) => {
         try {
 
-            //ADD GOOGLE SHEETS DATA
+            //add google sheets data
             await addFormsData('newData')
+
+            //complete missing data
+            //await completeFormsData()
 
         }catch (error) {
              console.log(error)
@@ -16,16 +20,7 @@ const cronController = {
     sendExpirationEmails: async(req,res) => {
         try {
 
-            const data = await getStudentsResults()
-
-            //const data = await (await fetch(dominio + 'apis/students-results/' + srg.companyName + '/' + srg.courseName)).json()
-
-            //const response = await fetch(dominio + 'apis/students-results/PSI Smart Services/Seguridad en el Manejo (4x4)');
-            
-            //console.log(response.ok)
-            // const data = await response.json()
-
-            
+            const data = await getDataToSend()
 
             
 

@@ -13,13 +13,15 @@ const userFormsValidations = {
             .isEmail().withMessage('Ingrese un mail válido')
 
             .custom(async(value,{ req }) => {
-                //get users from psi-courses-management
+                console.log('hola')
                 const response = await fetch('https://psi-courses-management.wnpower.host/apis/users/get-users', {
                     method: 'GET', 
                     headers: {
                         'Authorization': 'Bearer l)Zmi#S$FEB4'
                     }
                 })
+
+                console.log(response)
 
                 const users = await response.json()
 

@@ -52,6 +52,18 @@ module.exports = (sequelize, DataTypes) => {
          type: DataTypes.STRING,
          allowNull: true,
       },
+      validity:{
+         type: DataTypes.INTEGER,
+         allowNull: true,
+      },
+      expiration_date:{
+         type: DataTypes.DATE,
+         allowNull: true,
+      },
+      passed:{
+         type: DataTypes.INTEGER,
+         allowNull: true,
+      },
    }
    const config = {
    tableName : 'forms_data',
@@ -62,8 +74,7 @@ module.exports = (sequelize, DataTypes) => {
    Form_data.associate = (models) => {
       Form_data.belongsTo(models.Courses, {
         as: 'forms_data_courses',
-        foreignKey: 'form_name',
-        targetKey: 'course_name', 
+        foreignKey: 'id_courses' 
       });
       Form_data.hasMany(models.Profile_images, {
          as: 'student_image',

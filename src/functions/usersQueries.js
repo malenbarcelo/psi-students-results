@@ -23,7 +23,8 @@ const usersQueries = {
         }catch(error){
             return res.send('Ha ocurrido un error')
         }
-    }
+    },
+    
 }
 
 module.exports = usersQueries

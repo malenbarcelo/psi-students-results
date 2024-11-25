@@ -16,6 +16,7 @@ const { send } = require('process')
 const sharp = require('sharp')
 const readGoogleSheets = require('../functions/readGoogleSheets')
 const {addFormsData} = require('../functions/addFormsData')
+const {completeFormsData} = require('../functions/completeFormsData')
 
 const coursesController = {
     createCourse: async(req,res) => {
@@ -771,6 +772,10 @@ const coursesController = {
         try{
             //ADD GOOGLE SHEETS DATA
             await addFormsData('allData')
+
+            //COMPLETE FORMS DATA
+            //await completeFormsData()
+            
 
             return res.redirect('/courses/my-courses/' + req.session.userLogged.users_companies.company_name)
 

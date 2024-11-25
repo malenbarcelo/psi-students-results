@@ -46,7 +46,7 @@ const formsDataQueries = {
                 include: [
                     {
                         association: 'forms_data',
-                        order: [['date', 'DESC']]
+                        order: [['id', 'DESC']]
                     },
                 ],
                 attributes:[['id','courseId'],['course_name','form_name'],['pass_grade','pass_grade']],
@@ -88,7 +88,7 @@ const formsDataQueries = {
                 include: [
                     {
                         association: 'forms_data',
-                        order: [['date', 'DESC']],
+                        order: [['id', 'DESC']],
                         where: { company: company }
                     },
                 ],

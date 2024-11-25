@@ -29,6 +29,8 @@ async function addFormsData(dataToImport) {
     //read google sheets data
     let mdbData = await readGoogleSheets.mdbData()
 
+    console.log(mdbData)
+
     //find first row to add to database
     //database qty
     const formsData = await db.Forms_data.findAll({raw:true})
@@ -48,7 +50,9 @@ async function addFormsData(dataToImport) {
 
         //get student code
         const courseCode = mdbData[i][3] == '' ? 0 : parseInt(mdbData[i][3])
-        const studentCode = await formsDataQueries.studentCode(courseCode)
+        const existingCoursesCodesFormsData = formsData.filter( fd => fd.course_code == courseCode && fd.form_name == mdbData[i][8])
+        const existingCoursesCodesStructuredData = structuredData.filter( sd => sd.course_code == courseCode && sd.form_name == mdbData[i][8])
+        const studentCodeNumber = existingCoursesCodesStructuredData.length == 0 ? (existingCoursesCodesFormsData.length == 0 ? 1 : existingCoursesCodesFormsData.length + 1) : (existingCoursesCodesStructuredData[existingCoursesCodesStructuredData.length - 1].studentCodeNumber + 1)        
 
         //get grade
         let grade = 0
@@ -66,7 +70,8 @@ async function addFormsData(dataToImport) {
             dni:mdbData[i][6] == '' ? 0 : parseInt(mdbData[i][6]),
             form_name:mdbData[i][8] == '' || mdbData[i][8] == null ? 'Sin Form' : mdbData[i][8],
             course_code:courseCode,
-            student_code:studentCode,
+            student_code:String(studentCodeNumber).padStart(2,'0'),
+            studentCodeNumber: studentCodeNumber,
             observations:mdbData[i][9]
         })
     }

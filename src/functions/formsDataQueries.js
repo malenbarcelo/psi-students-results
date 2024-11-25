@@ -4,6 +4,126 @@ const sequelize = require('sequelize')
 const { Op, literal, fn, col} = require('sequelize')
 
 const formsDataQueries = {
+    incompleteData: async() => {
+        const data = await db.Forms_data.findAll({
+            include: [{association: 'forms_data_courses'}],
+            where:{
+                [Op.or]: [
+                    { validity: null },
+                    { expiration_date: null },
+                    { passed: null },
+                    { id_courses: null }
+                ]
+            },
+            raw:true,
+            nest:true
+        })
+        return data
+    },
+    completeData: async(id,validity,expirationDate,passed, idCourses) => {
+        await db.Forms_data.update(
+            {
+                passed: passed,
+                expiration_date: expirationDate,
+                validity:validity,
+                id_courses:idCourses
+            },
+            {
+                where:{
+                    id:id
+                }
+            }
+        )
+    },
+    studentsResults: async () => {
+        let data = await db.Forms_data.findAll({
+            attributes: [
+                'form_name',
+                'dni',
+                'company',
+                [sequelize.fn('JSON_ARRAYAGG', sequelize.literal(`
+                    JSON_OBJECT(
+                        'id', Forms_data.id,
+                        'date', Forms_data.date,
+                        'email', Forms_data.email,
+                        'grade', Forms_data.grade,
+                        'last_name', Forms_data.last_name,
+                        'first_name', Forms_data.first_name,
+                        'expiration_date', Forms_data.expiration_date,
+                        'passed', Forms_data.passed,
+                        'days_to_expiration', 
+                                CASE 
+                                    WHEN DATEDIFF(Forms_data.expiration_date, CURDATE()) < -1 THEN -9999
+                                    ELSE DATEDIFF(Forms_data.expiration_date, CURDATE())
+                                END
+                    )
+                `)), 'results']
+            ],
+            group: [
+                'form_name', 
+                'dni', 
+                'company',
+                'forms_data_courses.associated_courses.id',
+                'Forms_data.id', 
+                'Forms_data.date'
+            ],
+            include: [{ 
+                association: 'forms_data_courses',
+                include: [{association: 'associated_courses' }]
+            }],
+            raw: false,
+            nest: true
+        });
+
+        const plainData = data.map(record => record.get({ plain: true }));
+
+        plainData.forEach(item => {
+            item.results.sort((a, b) => b.id - a.id); // Ordenar en orden descendente por `id`
+        });
+
+        return plainData;
+    },
+    studentResults: async (idCourse,dni,company) => {
+        let data = await db.Forms_data.findAll({
+            where:{
+                dni:dni,
+                company:company
+            },
+            include: [{ 
+                association: 'forms_data_courses',
+                where:{
+                    id: idCourse
+                }
+            }],
+            order:[['id','DESC']],
+            raw: true,
+            nest: true
+        });
+
+        data = data.map(item => {
+            const expirationDate = new Date(item.expiration_date); // Asegúrate de que `expiration_date` exista
+            const today = new Date();
+    
+            // Calcular la diferencia en días
+            const differenceInTime = expirationDate.getTime() - today.getTime();
+            const daysToExpiration = Math.ceil(differenceInTime / (1000 * 60 * 60 * 24)); // Convertir milisegundos a días
+    
+            return {
+                ...item,
+                days_to_expiration: daysToExpiration
+            };
+        });
+    
+        return data;
+    },
+
+
+
+
+
+
+
+
     getData: async() => {
         const data = await db.Forms_data.findAll({
             attributes: [

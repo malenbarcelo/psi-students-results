@@ -1,5 +1,6 @@
 const express = require('express')
 const apisController = require('../controllers/apisController.js')
+const resultsController = require('../controllers/apis/resultsController.js')
 const userMiddleware = require('../middlewares/userMiddleware.js')
 const path = require('path')
 const multer = require('multer')
@@ -32,6 +33,9 @@ router.post('/upload-image/:dni',upload.single('image'),apisController.uploadIma
 //version 2.0
 router.get('/students-results/:company/:courseName',userMiddleware,apisController.studentsResults)
 router.get('/students/predict-full-names/:courseName/:string',apisController.predictNames)
+
+//version 3.0
+router.get('/results/get-data',resultsController.getData)
 
 
 module.exports = router
