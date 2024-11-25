@@ -52,6 +52,11 @@ const formsDataQueries = {
                 attributes:[['id','courseId'],['course_name','form_name'],['pass_grade','pass_grade']],
                 nest:true
             })
+
+            courses.forEach(course => {
+                course.forms_data = course.forms_data.sort((a, b) => b.id - a.id);
+            });
+            
             return courses
         }catch(error){
             console.log(error)
