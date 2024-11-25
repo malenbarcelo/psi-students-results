@@ -21,8 +21,6 @@ const userFormsValidations = {
                     }
                 })
 
-                console.log(response)
-
                 const users = await response.json()
 
                 const userToLogin = users.filter( u => u.email == req.body.email)

@@ -217,6 +217,8 @@ const coursesController = {
                 course.notPassedPercentage = Number((100 - passedPercentege).toFixed(2))
                 
             })
+
+            console.log(coursesData.filter(c => c.form_name == 'Autoelevador')[0].students_results)
             
             return res.render('courses/myCourses',{title:'Mis cursos',coursesData})
 
