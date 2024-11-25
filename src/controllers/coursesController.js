@@ -167,9 +167,6 @@ const coursesController = {
             //get plain data
             coursesData = coursesData.map(course => course.get({ plain: true }))
 
-            const data = coursesData.filter(c=> c.form_name == "Autoelevador")[0].forms_data
-            console.log(data.filter(d=>d.dni ==18806459))
-
             //transform data
             coursesData = coursesData.map(course => ({ ...course, pass_grade: parseFloat(course.pass_grade,2)/100}))
 
