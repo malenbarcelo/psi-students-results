@@ -167,6 +167,9 @@ const coursesController = {
             //get plain data
             coursesData = coursesData.map(course => course.get({ plain: true }))
 
+            const data = coursesData.filter(c=> c.form_name == "Autoelevador")[0].forms_data
+            console.log(data.filter(d=>d.dni ==18806459))
+
             //transform data
             coursesData = coursesData.map(course => ({ ...course, pass_grade: parseFloat(course.pass_grade,2)/100}))
 
@@ -217,8 +220,6 @@ const coursesController = {
                 course.notPassedPercentage = Number((100 - passedPercentege).toFixed(2))
                 
             })
-
-            console.log(coursesData.filter(c => c.form_name == 'Autoelevador')[0].students_results)
             
             return res.render('courses/myCourses',{title:'Mis cursos',coursesData})
 
