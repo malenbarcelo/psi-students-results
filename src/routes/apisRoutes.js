@@ -36,6 +36,7 @@ router.get('/students/predict-full-names/:courseName/:string',apisController.pre
 
 //version 3.0
 router.get('/results/get-data',resultsController.getData)
+router.get('/results/associated-forms-data/:courseId',resultsController.associatedFormsData)
 
 
 module.exports = router

@@ -21,7 +21,14 @@ const associatedFormsQueries = {
             where:{
                 id_forms:courseId
             },
-            raw:true
+            include: [
+                {
+                    association: 'course_data',
+                    order: [['id', 'DESC']],
+                },
+            ],
+            raw:true,
+            nest:true
         })
         return forms
     },

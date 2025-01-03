@@ -29,8 +29,6 @@ async function addFormsData(dataToImport) {
     //read google sheets data
     let mdbData = await readGoogleSheets.mdbData()
 
-    console.log(mdbData)
-
     //find first row to add to database
     //database qty
     const formsData = await db.Forms_data.findAll({raw:true})
@@ -78,6 +76,25 @@ async function addFormsData(dataToImport) {
 
     //add data to database
     await db.Forms_data.bulkCreate(structuredData)
+
+    const students = structuredData.map(sd => ({ dni: sd.dni, company: sd.company }))
+
+    const uniqueStudents = students.filter(
+        (student, index, self) =>
+          index === self.findIndex(s => s.dni === student.dni && s.company === student.company)
+    )
+
+    uniqueStudents.forEach(student => {
+        const studentData = structuredData.filter(sd => sd.dni == student.dni && sd.company == student.company)
+        student.first_name = studentData[0].first_name
+        student.last_name = studentData[0].last_name
+        student.email = studentData[0].email
+        student.enabled = 1
+        
+        
+    })
+
+    return uniqueStudents
 
 }
 

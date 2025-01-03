@@ -164,8 +164,6 @@ const apisController = {
 
         })
 
-        console.log(studentsResults.filter(sr => sr.dni == '24123987'))
-
         return res.status(200).json(studentsResults)
 
     }catch(error){
@@ -459,8 +457,16 @@ const apisController = {
 
       const string = req.params.string.toLowerCase()
       const courseName = req.params.courseName
+      const courseId = await coursesQueries.courseId(courseName)
+      const company = req.session.userLogged.users_companies.company_name
+      const associatedCourses = await associatedFormsQueries.courseAssociatedForms(courseId)
       
-      const list = await formsDataQueries.fullNames(courseName)
+      const courses = [courseName]
+      associatedCourses.forEach(ac => {
+        courses.push(ac.course_data.course_name)
+      })
+      
+      const list = await formsDataQueries.fullNames(courses,company)
       
       // const list = fullNames.map(element => ({ //delete spaces at the end
       //   ...element,

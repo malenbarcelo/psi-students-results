@@ -6,3 +6,7 @@
 #arppTable{
     height: 200px; /*to avoid overflow, it depends on the website landscape*/
 }
+
+#afrppTable{
+    height: 380px; /*to avoid overflow, it depends on the website landscape*/
+}

@@ -1,8 +1,8 @@
 import { dominio } from "../dominio.js"
 import srg from "./globals.js"
-import {printTableSR} from "./printTable.js"
-import {applyFilters} from "./functions.js"
-import {clearInputs,closePopupsEventListeners,showTableInfo, predictElements, selectFocusedElement} from "../generalFunctions.js"
+import {printTableSR, printAssociatedFormsData} from "./printTable.js"
+import {applyFilters, applyAssociatedResultsFilters} from "./functions.js"
+import {clearInputs,closePopupsEventListeners,showTableInfo, predictElements, selectFocusedElement,applyPredictElement} from "../generalFunctions.js"
 
 //popups event listeners
 import {usippEventListeners} from "./studentsUSIPP.js"
@@ -18,6 +18,17 @@ window.addEventListener('load',async()=>{
 
     //get data
     srg.courseData = await (await fetch(dominio + 'apis/course-data/' + srg.courseId)).json()
+    const formAssociatedFormsData = await (await fetch(dominio + 'apis/results/associated-forms-data/' + srg.courseId)).json()
+    srg.associatedFormsData = formAssociatedFormsData.formsData
+    srg.associatedFormsResults = formAssociatedFormsData.results
+    srg.associatedFormsResultsFiltered = srg.associatedFormsResults
+
+    //hide associated results if applies
+    if (srg.associatedFormsData.length == 0) {
+        details.style.display = 'none'
+    }else{
+        details.style.display = 'flex'
+    }
 
     //hide certificates if applies
     if (srg.courseData.includes_certificate == 0) {
@@ -62,8 +73,21 @@ window.addEventListener('load',async()=>{
         printCredentials.checked = false
     })
 
+    //unFilter associated forms
+    afrppUnfilter.addEventListener("click", async() => {
+        const filters = [afrppForm,afrppDni,afrppResult,afrppName]
+        const company = document.getElementById('afrppCompany')
+        if (company) {
+            filters.push(company)
+        }
+        clearInputs(filters)
+        srg.associatedFormsResultsFiltered = srg.associatedFormsResults        
+        printAssociatedFormsData()
+        
+    })
+
     //close popups
-    const closePopups = [arppClose,arppCancel,usippClose]
+    const closePopups = [arppClose,arppCancel,usippClose,afrppClose,afrppCancel,]
     closePopupsEventListeners(closePopups)
 
     //table info events listeners
@@ -74,15 +98,15 @@ window.addEventListener('load',async()=>{
         },
         {
             icon:obsIcon,
-            right:srg.courseData.includes_certificate == 1 ? '6.5%' : '4.5%'
+            right:srg.courseData.includes_certificate == 1 ? '6%' : '4.5%'
         },
         {
             icon:imageIcon,
-            right:'4%'
+            right:'3%'
         },
         {
             icon:checkIcon,
-            right:'1%'
+            right:'0%'
         }
     ]
 
@@ -104,6 +128,39 @@ window.addEventListener('load',async()=>{
         const elementName = 'name'
         selectFocusedElement(e,input,list,elementName)
     })
+
+    //afrpp filter name predict elements
+    afrppName.addEventListener("input", async(e) => {
+        const input = afrppName
+        const list = ulAfrppName
+        const apiUrl = 'apis/students/predict-full-names/' + srg.courseData.course_name + '/'
+        const name = 'full_name'
+        const elementName = 'name2'
+        predictElements(input,list,apiUrl,name,elementName)
+    })
+
+    afrppName.addEventListener("keydown", async(e) => {
+        const input = afrppName
+        const list = ulAfrppName
+        const elementName = 'name2'
+        selectFocusedElement(e,input,list,elementName)
+    })
+
+    //sort company
+    companyUp.addEventListener("click", async() => {
+        companyUp.classList.add('notVisible')
+        companyDown.classList.remove('notVisible')
+        srg.studentsResultsFiltered = srg.studentsResultsFiltered.sort((a, b) => a.company.localeCompare(b.company))
+        printTableSR(srg.studentsResultsFiltered)        
+    })
+    companyDown.addEventListener("click", async() => {
+        companyUp.classList.remove('notVisible')
+        companyDown.classList.add('notVisible')
+        srg.studentsResultsFiltered = srg.studentsResultsFiltered.sort((a, b) => b.company.localeCompare(a.company))
+        printTableSR(srg.studentsResultsFiltered)        
+    })
+
+    
 
     //sort name
     nameUp.addEventListener("click", async() => {
@@ -187,10 +244,44 @@ window.addEventListener('load',async()=>{
         }else{
             srError.style.display = 'none'
             printForm.submit()
-
-            
-            
         }
+    })
+
+    //view assoiated results
+    details.addEventListener("click", async(e) => {
+
+        studentsResultsLoader.style.display = 'block'
+
+        srg.associatedFormsResultsFiltered = srg.associatedFormsResults
+
+        //title
+        afrppMainTitle.innerText = srg.courseName
+        
+        //complete forms select
+        afrppForm.innerHTML = '<option value="">Todos los formularios asociados</option>'
+        srg.associatedFormsData.forEach(element => {
+            afrppForm.innerHTML += '<option value="' + element.course_data.course_name + '">' + element.course_data.course_name + '</option>'
+        })
+
+        //apply filters
+        const filters = [afrppForm,afrppDni,afrppResult,afrppName]
+        const company = document.getElementById('afrppCompany')
+        if (company) {
+            filters.push(company)
+        }
+
+        filters.forEach(filter => {
+            filter.addEventListener("change", async(e) => {
+                applyAssociatedResultsFilters()
+                printAssociatedFormsData()
+            })            
+        })
+
+        printAssociatedFormsData()
+
+        studentsResultsLoader.style.display = 'none'
+
+        afrpp.style.display = 'block'
     })
 
 })

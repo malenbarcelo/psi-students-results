@@ -205,4 +205,43 @@ async function printAssociatedResults(dataToPrint) {
     
 }
 
-export {printTableSR}
+async function printAssociatedFormsData() {
+
+    afrppBody.innerHTML = ''
+    const dataToPrint = srg.associatedFormsResultsFiltered
+    let counter = 0
+
+    let html = ''
+
+    dataToPrint.forEach(element => {
+
+        const rowClass = counter % 2 == 0 ? 'tBody1 tBodyEven' : 'tBody1 tBodyOdd'
+        const color = element.results[0].passed == 0 ? 'redColor' : 'greenColor'
+        const date = element.results[0].date.split(' ')[0]
+        const day = date.split('-')[2]
+        const month = date.split('-')[1]
+        const year = date.split('-')[0]
+        const dateString = String(day).padStart(2,'0') + '/' + String(month).padStart(2,'0') + '/' + year
+        
+        
+        html += `
+            <tr>
+                <th class="${rowClass}">${dateToString(element.results[0].date)}</th>
+                <th class="${rowClass}">${element.form_name}</th>
+                <th class="${rowClass}">${element.company}</th>
+                <th class="${rowClass}">${element.dni}</th>
+                <th class="${rowClass}">${element.results[0].last_name + ', ' + element.results[0].first_name}</th>
+                <th class="${rowClass + ' ' + color}">${parseFloat(element.results[0].grade,2) * 100 + '%'}</th>
+                <th class="${rowClass}">${element.results[0].days_to_expiration == -9999 ? '-' : dateToString(element.results[0].expiration_date)}</th>                
+        `
+        counter += 1
+
+    })
+
+    afrppBody.innerHTML += html
+    
+}
+
+
+
+export {printTableSR, printAssociatedFormsData}

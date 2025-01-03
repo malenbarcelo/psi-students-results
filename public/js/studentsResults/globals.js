@@ -10,7 +10,9 @@ let srg = {
     downloadSelected:[],
     documentsToPrint:[],
     studentDniToUpload:[],
-    
+    associatedFormsData:[],
+    associatedFormsResults:[],
+    associatedFormsResultsFiltered:[]
 }
 
 export default srg

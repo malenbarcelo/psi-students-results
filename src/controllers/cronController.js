@@ -1,5 +1,6 @@
 const {addFormsData} = require('../functions/addFormsData')
 const {completeFormsData} = require('../functions/completeFormsData')
+const {createStudents} = require('../functions/createStudents')
 const { getDataToSend } = require('../functions/getDataToSend')
 const dominio = require('../functions/dominio')
 
@@ -8,10 +9,13 @@ const cronController = {
         try {
 
             //add google sheets data
-            await addFormsData('newData')
+            const students = await addFormsData('newData')
 
             //complete missing data
-            //await completeFormsData()
+            await completeFormsData()
+
+            //create students
+            //await createStudents(students)
 
         }catch (error) {
              console.log(error)
@@ -27,7 +31,8 @@ const cronController = {
         }catch (error) {
              console.log(error)
         }
-    }
+    },
+    
 }
 
 module.exports = cronController

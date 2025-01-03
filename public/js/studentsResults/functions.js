@@ -38,5 +38,29 @@ function applyFilters() {
     })
 }
 
+function applyAssociatedResultsFilters() {
 
-export {applyFilters}
+    srg.associatedFormsResultsFiltered = srg.associatedFormsResults
+
+    //form
+    srg.associatedFormsResultsFiltered = afrppForm.value == '' ? srg.associatedFormsResultsFiltered : srg.associatedFormsResultsFiltered.filter(ar => ar.form_name == afrppForm.value)
+    
+    //company
+    const afrppCompany = document.getElementById('afrppCompany')
+    if (afrppCompany) {
+        srg.associatedFormsResultsFiltered = afrppCompany.value == '' ? srg.associatedFormsResultsFiltered : srg.associatedFormsResultsFiltered.filter(ar => ar.company == afrppCompany.value)
+    }
+
+    //dni
+    srg.associatedFormsResultsFiltered = afrppDni.value == '' ? srg.associatedFormsResultsFiltered : srg.associatedFormsResultsFiltered.filter(ar => ar.dni == afrppDni.value)
+    
+    //result
+    srg.associatedFormsResultsFiltered = afrppResult.value == '' ? srg.associatedFormsResultsFiltered : srg.associatedFormsResultsFiltered.filter(sr => sr.results[0].passed == afrppResult.value)
+    
+    //name
+    srg.associatedFormsResultsFiltered = afrppName.value == '' ? srg.associatedFormsResultsFiltered: srg.associatedFormsResultsFiltered.filter(sr => (sr.results[0].last_name + ', ' + sr.results[0].first_name).trim() == afrppName.value)
+    
+}
+
+
+export {applyFilters, applyAssociatedResultsFilters}

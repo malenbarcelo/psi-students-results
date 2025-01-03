@@ -35,6 +35,7 @@ const formsDataQueries = {
             }
         )
     },
+    
     studentsResults: async () => {
         let data = await db.Forms_data.findAll({
             attributes: [
@@ -74,7 +75,7 @@ const formsDataQueries = {
             raw: false,
             nest: true
         });
-
+                
         const plainData = data.map(record => record.get({ plain: true }));
 
         plainData.forEach(item => {
@@ -115,6 +116,26 @@ const formsDataQueries = {
         });
     
         return data;
+    },
+
+    courseResults: async (forms, company) => {
+
+        const whereCondition = {
+            form_name: forms,
+        };
+    
+        if (company !== "PSI Smart Services") {
+            whereCondition.company = company;
+        }
+
+        let results = await db.Forms_data.findAll({
+            where:whereCondition,
+            order:[['id','DESC']],
+            raw:true
+            
+        })
+
+        return results;
     },
 
 
@@ -227,16 +248,19 @@ const formsDataQueries = {
             return res.send('Ha ocurrido un error')
         }
     },
-    companies: async() => {
-        try{
+    companies: async () => {
+        try {
             const companies = await db.Forms_data.findAll({
-                attributes: [[sequelize.fn('DISTINCT', sequelize.col('company')), 'company']],
-                order:['company'],
-                raw:true,
-            })
-            return companies
-        }catch(error){
-            return res.send('Ha ocurrido un error')
+                attributes: [
+                    [sequelize.fn('DISTINCT', sequelize.fn('TRIM', sequelize.col('company'))), 'company']
+                ],
+                order: [[sequelize.literal('company'), 'ASC']],
+                raw: true,
+            });
+            return companies;
+        } catch (error) {
+            console.error('Error fetching companies:', error);
+            return { error: 'Ha ocurrido un error' };
         }
     },
     companiesFiltered: async(course) => {
@@ -464,7 +488,16 @@ const formsDataQueries = {
             return res.send('Ha ocurrido un error')
         }
     },
-    fullNames: async(courseName) => {        
+    fullNames: async(courseName,company) => {
+        
+        const whereCondition = {
+            form_name: courseName,
+        };
+    
+        if (company !== "PSI Smart Services") {
+            whereCondition.company = company;
+        }
+
         const fullNames = await db.Forms_data.findAll({
             attributes: [
                 [db.sequelize.fn('DISTINCT', 
@@ -475,9 +508,7 @@ const formsDataQueries = {
                     )
                 ), 'full_name']
             ],
-            where:{
-                form_name:courseName
-            },
+            where: whereCondition,
             order:['full_name'],
             raw:true
         })

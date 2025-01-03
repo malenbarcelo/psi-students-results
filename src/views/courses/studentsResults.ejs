@@ -8,13 +8,32 @@
     <div class="notVisible" id="companyName"><%= userLogged.users_companies.company_name %></div>
     <div class="notVisible" id="courseId"><%= idCourse %></div>
     <div class="mainTitle mbm" id="course"><%= course %></div>
-    <div class="subtitle mbm">RESULTADOS DEL FORMULARIO</div>
+    <div class="subtitle mbm" id="srTitle">
+        <div>RESULTADOS DEL FORMULARIO</div>
+        <div id="details">
+            <i class="fa-solid fa-magnifying-glass-plus" id="srDetailsIcon"></i>
+            <div id="srDetailsInfo">Ver formularios asociados</div>
+
+        </div>
+        
+    </div>
+
+    <!------GENERAL ACTIONS------>
+    <!-- <div class="dgas dgas-t1-r2">
+        <div class="dga dga-s" id="details">
+            <i class="fa-solid fa-magnifying-glass-plus"></i>
+            <div class="dgaInfo">
+                Ver formularios asociados
+            </div>        
+        </div>
+    </div> -->
+    
 
     <!------MAIN FILTERS------>
     <div id="srMainFilters" class="mbl">
         
         <div class="divInputsRow">
-            <% if (userLogged.id_user_categories == 1) { %>
+            <% if (userLogged.id_users_categories == 2 || userLogged.id_users_categories == 3) { %>
                 <div class="divInput">
                     <label class="label">Empresa</label>
                     <select class="input il spl" id="filterCompany">
@@ -42,7 +61,7 @@
             </div>
             <div class="divInput">
                 <label class="label">Nombre y apellido</label>
-                <input type="text" class="input im ipl" id="filterName">
+                <input type="text" class="input im ipl" id="filterName" autocomplete="off">
                 <ul class="predictedElements" id="ulFilterName"></ul>                    
             </div>
             <div class="divInput">
@@ -75,15 +94,18 @@
                 <thead>
                     <tr>                    
                         <th class="thCss thm">
-                            Empresa
+                            <div class="thFlex">
+                                Empresa
+                                <i class="fa-solid fa-arrow-up icon" id="companyUp"></i>
+                                <i class="fa-solid fa-arrow-down icon notVisible" id="companyDown"></i>
+                            </div>                            
                         </th>
                         <th class="thCss ths">
                             <div class="thFlex">
                                 Fecha
                                 <i class="fa-solid fa-arrow-up icon" id="dateUp"></i>
                                 <i class="fa-solid fa-arrow-down icon notVisible" id="dateDown"></i>
-                            </div>
-                            
+                            </div>                            
                         </th>
                         <th class="thCss thxs">DNI</th>
                         <th class="thCss thl">
@@ -149,6 +171,7 @@
 
 <!----------POPUPS---------->
 <%- include('../studentsResults/popupsARPP') %>
+<%- include('../studentsResults/popupsAFRPP') %>
 <%- include('../studentsResults/popupsUSIPP') %>
 
 

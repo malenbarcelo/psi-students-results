@@ -167,6 +167,8 @@ const coursesController = {
             //get plain data
             coursesData = coursesData.map(course => course.get({ plain: true }))
 
+            console.log(coursesData)
+
             //transform data
             coursesData = coursesData.map(course => ({ ...course, pass_grade: parseFloat(course.pass_grade,2)/100}))
 
@@ -217,6 +219,8 @@ const coursesController = {
                 course.notPassedPercentage = Number((100 - passedPercentege).toFixed(2))
                 
             })
+
+            coursesData = coursesData.filter( c => c.includes_certificate == 1)
             
             return res.render('courses/myCourses',{title:'Mis cursos',coursesData})
 
@@ -774,7 +778,7 @@ const coursesController = {
             await addFormsData('allData')
 
             //COMPLETE FORMS DATA
-            //await completeFormsData()
+            await completeFormsData()
             
 
             return res.redirect('/courses/my-courses/' + req.session.userLogged.users_companies.company_name)

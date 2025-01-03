@@ -49,7 +49,7 @@ const formsDataQueries = {
                         order: [['id', 'DESC']]
                     },
                 ],
-                attributes:[['id','courseId'],['course_name','form_name'],['pass_grade','pass_grade']],
+                attributes:[['id','courseId'],['course_name','form_name'],['pass_grade','pass_grade'],['includes_certificate','includes_certificate']],
                 nest:true
             })
 
@@ -97,7 +97,7 @@ const formsDataQueries = {
                         where: { company: company }
                     },
                 ],
-                attributes:[['id','courseId'],['course_name','form_name'],['pass_grade','pass_grade']],
+                attributes:[['id','courseId'],['course_name','form_name'],['pass_grade','pass_grade'],['includes_certificate','includes_certificate']],
                 nest:true
             })
             return courses

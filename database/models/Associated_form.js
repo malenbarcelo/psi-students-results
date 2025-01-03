@@ -18,10 +18,18 @@ module.exports = (sequelize, DataTypes) => {
    },
    }
    const config = {
-   tableName : 'associated_forms',
-   timestamps : false
+      tableName : 'associated_forms',
+      timestamps : false
    }
+
    const Associated_form = sequelize.define(alias, cols, config)
+
+   Associated_form.associate = (models) => {
+      Associated_form.belongsTo(models.Courses, {
+         as: 'course_data',
+         foreignKey: 'id_associated_form'
+      })
+   }
    
    return Associated_form
 }

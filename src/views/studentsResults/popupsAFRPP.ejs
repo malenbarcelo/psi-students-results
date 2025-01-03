@@ -1,0 +1,83 @@
+<!-- ASSOCIATED FORMS RESULTS POPUP (AFRPP) -->
+<div class="popup" id="afrpp">
+    
+    <div class="popupContent" id="afrppContent">
+
+        <div class="popupIcons">
+            <div class="popupIcon1"><i class="fa-solid fa-info"></i></div>
+            <div class="popupClose2" id="afrppClose"><i class="fa-solid fa-rectangle-xmark popupCloseIcon"></i></div>
+        </div>
+
+        <div class="popupTitle1 mtm mbxs" id="afrppMainTitle"></div>
+        <div class="popupTitle1 mbm" id="afrppSubtitle">Formularios asociados</div>
+
+        <!------MAIN FILTERS------>
+        <div class="divInputsRow mbs">
+            <div class="divInput">
+                <label class="label">Formulario</label>
+                <select class="input ixxxxl spl" id="afrppForm">
+                    <option value="">Todos los formularios asociados</option>
+                </select>            
+            </div>
+            
+        </div>
+        <div class="divInputsRow mbm">
+            <% if (userLogged.id_users_categories == 2 || userLogged.id_users_categories == 3) { %>
+                <div class="divInput">
+                    <label class="label">Empresa</label>
+                    <select class="input il spl" id="afrppCompany">
+                        <option value=""></option>
+                        <% companies.forEach(company => { %>
+                            <% if (company.company_name != 'PSI') { %>
+                                <option value="<%= company.company %>"><%= company.company %></option>
+                            <% } %>
+                        <% }) %>                
+                    </select>            
+                </div>
+            <% } %>
+            <div class="divInput">
+                <label class="label">DNI</label>
+                <input type="text" class="input ixxs ipl" id="afrppDni">                    
+            </div>
+            <div class="divInput">
+                <label class="label">Nombre y apellido</label>
+                <input type="text" class="input im ipl" id="afrppName" autocomplete="off">
+                <ul class="predictedElements" id="ulAfrppName"></ul>                    
+            </div>
+            <div class="divInput">
+                <label class="label">Resultado</label>
+                <select class="input is spl" id="afrppResult">
+                    <option value=""></option>
+                    <option value=1>Aprobados</option>
+                    <option value=0>Desaprobados</option>
+                                
+                </select>            
+            </div>
+            <div class="divInput">
+                <i class="fa-solid fa-filter-circle-xmark unfilterIcon" id="afrppUnfilter"></i>
+            </div>
+        </div>    
+        
+        <div class="divTable" id="afrppTable">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="thCss2 fsm ths">Fecha</th>
+                        <th class="thCss2 fsm thxxxxl">Formulario</th>
+                        <th class="thCss2 fsm ths">Empresa</th>
+                        <th class="thCss2 fsm ths">DNI</th>
+                        <th class="thCss2 fsm thxl">Apellido y nombre</th>
+                        <th class="thCss2 fsm ths">Nota</th>
+                        <th class="thCss2 fsm ths">Vencimiento</th>
+                    </tr>
+                </thead>
+                <tbody id="afrppBody"></tbody>
+            </table>
+        </div>
+
+        <div class="divButtonsRow mtl mbs">
+            <div id="afrppCancel" class="btn1 bm">Cerrar</div>
+        </div>
+
+    </div>
+</div>

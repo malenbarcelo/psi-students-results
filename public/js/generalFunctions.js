@@ -52,6 +52,7 @@ function acceptWithEnter(input,button) {
 function dateToString(date) {
 
     const dateWithoutTime = date.split('T')[0]
+    
     const dateAsArray = dateWithoutTime.split('-')
 
     const year = dateAsArray[0]
@@ -85,6 +86,26 @@ function showTableInfo(tableIcons,top,width) {
             info.style.display = 'none'
         })
     })
+}
+
+async function applyPredictElement(elementsToPredict) {
+
+    for (let i = 0; i < elementsToPredict.length; i++) {
+        
+        const input = elementsToPredict[i].input
+        const list = elementsToPredict[i].list
+        const apiUrl = elementsToPredict[i].apiUrl
+        const name = elementsToPredict[i].name
+        const elementName = elementsToPredict[i].elementName
+
+        input.addEventListener("input", async(e) => {
+            predictElements(input,list,apiUrl,name,elementName)
+        })
+
+        input.addEventListener("keydown", async(e) => {
+            selectFocusedElement(e,input,list,elementName)
+        })
+    }
 }
 
 async function predictElements(input,list,apiUrl,dataToPrint,elementName) {
@@ -220,4 +241,6 @@ function showOkPopup(popupToShow) {
 
 
 
-export {closePopupsEventListeners,isInvalid,isValid, acceptWithEnter,dateToString, clearInputs, showTableInfo, predictElements,selectFocusedElement, showOkPopup}
+
+
+export {closePopupsEventListeners,isInvalid,isValid, acceptWithEnter,dateToString, clearInputs, showTableInfo, predictElements,selectFocusedElement, showOkPopup, applyPredictElement}

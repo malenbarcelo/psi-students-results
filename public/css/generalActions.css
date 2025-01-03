@@ -1,0 +1,67 @@
+.dgas{
+    display: flex;
+    column-gap: 20px;
+    position: absolute;
+    /*color: var(--color1);*/
+}
+
+.dgas-t1-r1{
+    top: 22vh;
+    right: 7vw;
+}
+
+.dgas-t2-r1{
+    top: 12vh;
+    right: 14vw;
+}
+
+.dgas-t2-r2{
+    top: 17.5vh;
+    right: 2vw;
+}
+
+
+.dga{
+    border: black solid 3px;
+    font-size: 20px;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.dga-s{
+    height: 30px;
+    width: 30px;
+    font-size: 15px;
+}
+
+.dga-m{
+    height: 40px;
+    width: 40px;
+    font-size: 20px;
+}
+
+.dga:hover{
+    color:white;
+    background-color: black;
+}
+
+.dga:hover .dgaInfo{
+    display: block;
+}
+
+.dgaInfo{
+    display: none;
+    padding: 2px 5px;
+    position: absolute;
+    font-size: 13px;
+    border-radius: 3px;
+    top:-40px;
+    text-align: center;
+    width: 150px;
+    color: black;
+}
