@@ -167,8 +167,6 @@ const coursesController = {
             //get plain data
             coursesData = coursesData.map(course => course.get({ plain: true }))
 
-            console.log(coursesData)
-
             //transform data
             coursesData = coursesData.map(course => ({ ...course, pass_grade: parseFloat(course.pass_grade,2)/100}))
 
