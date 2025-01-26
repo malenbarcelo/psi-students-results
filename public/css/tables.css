@@ -166,3 +166,20 @@ border-top-right-radius: 15px;
     cursor: pointer;
     color: var(--errorColor);
 }
+
+/* change page */
+.change-pages{
+    display: flex;
+    font-size: 20px;
+    column-gap: 20px;
+    justify-content: center;
+    position: absolute;
+    width: 84%;
+    bottom: 2%;
+}
+
+.page-number{
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+}

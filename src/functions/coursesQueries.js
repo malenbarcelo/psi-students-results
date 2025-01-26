@@ -71,7 +71,10 @@ const formsDataQueries = {
                     {
                         association: 'forms_data',
                         order: [['date', 'DESC']],
-                        include: [{association:'student_image'}]
+                        include: [
+                            {association:'student_data'},
+                            {association:'student_image'}
+                        ],
                     },
                 ],
                 where:{
@@ -114,7 +117,10 @@ const formsDataQueries = {
                     {
                         association: 'forms_data',
                         order: [['date', 'DESC']],
-                        include: [{association:'student_image'}],
+                        include: [
+                            {association:'student_data'},
+                            {association:'student_image'}
+                        ],
                         where: { 
                             company: company
                          }

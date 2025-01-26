@@ -26,6 +26,21 @@ function isInvalid(inputs) {
     })    
 }
 
+function isInvalidOk(inputs,errorText) {
+    inputs.forEach(input => {
+        const label = document.getElementById(input.id + 'Label')
+        const error = document.getElementById(input.id + 'Error')
+        input.classList.add('invalidInput')
+        if (label) {
+            label.classList.add('invalidLabel')
+        }
+        if (error) {
+            error.innerText = errorText
+            error.style.display = 'block'
+        }        
+    })    
+}
+
 function isValid(inputs) {
     inputs.forEach(input => {
         const label = document.getElementById(input.id + 'Label')
@@ -239,8 +254,88 @@ function showOkPopup(popupToShow) {
     
 }
 
+function showToolkit(tableIcons,top,width) {
+    tableIcons.forEach(element => {
+        const info = document.getElementById(element.icon.id.replace('Icon','Info'))
+        element.icon.addEventListener("mouseover", async(e) => {
+            info.style.top = top + 'px'
+            info.style.right = element.right
+            
+            info.style.width = width + 'px'
+            info.style.display = 'block'
+        })
+        element.icon.addEventListener("mouseout", async(e) => {
+            info.style.display = 'none'
+        })
+    })
+}
+
+function closePopups(popups) {
+    popups.forEach(popup => {
+        const closeIcon = document.getElementById(popup.id + 'Close')
+        const cancelIcon = document.getElementById(popup.id + 'Cancel')
+        if (closeIcon) {
+            closeIcon.addEventListener("click", async() => {
+                
+                popup.style.display = 'none'
+            })
+        }
+        if (cancelIcon) {
+            cancelIcon.addEventListener("click", async() => {
+                popup.style.display = 'none'
+            })
+        }
+    })
+}
+
+function closeWithEscape(popups) {
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const displayedPopups = popups.filter(p => p.style.display == 'block' || p.classList.contains('slideIn'))
+            if (displayedPopups.length > 0) {
+                if (displayedPopups[0].style.display == 'block') {
+                    displayedPopups[0].style.display = 'none'
+                }else{
+                    displayedPopups[0].classList.remove('slideIn')
+                }
+            }
+        }
+    })
+}
+
+function showResultPopup(popupToShow) {
+
+    popupToShow.classList.add('okSlideIn')
+
+    //hide okPopup after one second
+    setTimeout(function() {
+        popupToShow.classList.remove('okSlideIn')
+    }, 2000)    
+}
+
+function showAndHideArrows(element, orderElements) {
+
+    const type = element.id.includes('ASC') ? 'ASC' : 'DESC'
+    const elementToShowId = element.id.includes('ASC') ? element.id.replace('ASC','DESC') : element.id.replace('DESC','ASC')
+    const elementToShow = orderElements.filter( e => e.id == elementToShowId)[0]
+    element.style.display = 'none'
+    elementToShow.style.display = 'block'
+    const elementName = element.id.replace('_ASC','').replace('_DESC','')
+
+    orderElements.forEach(oe => {
+        const oeName = oe.id.replace('_ASC','').replace('_DESC','')
+        if (oeName != elementName) {
+            if (oe.id.includes('_ASC')) {
+                oe.style.display = 'block'
+            }else{
+                oe.style.display = 'none'
+            }
+        }
+    })
+
+    return type
+
+}
 
 
-
-
-export {closePopupsEventListeners,isInvalid,isValid, acceptWithEnter,dateToString, clearInputs, showTableInfo, predictElements,selectFocusedElement, showOkPopup, applyPredictElement}
+export {closePopupsEventListeners,isInvalid,isValid, acceptWithEnter,dateToString, clearInputs, showTableInfo, predictElements,selectFocusedElement, showOkPopup, applyPredictElement, showToolkit, closePopups, closeWithEscape, isInvalidOk, showResultPopup, showAndHideArrows}

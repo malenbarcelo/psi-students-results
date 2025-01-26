@@ -90,8 +90,6 @@ async function addFormsData(dataToImport) {
         student.last_name = studentData[0].last_name
         student.email = studentData[0].email
         student.enabled = 1
-        
-        
     })
 
     return uniqueStudents

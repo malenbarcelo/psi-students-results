@@ -1,0 +1,116 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+<%- include('../partials/userLogged') %>
+
+<div class="mainBody">
+
+    <div class="notVisible" id="idUserCategory"><%= userLogged.id_users_categories %></div>
+    <div class="notVisible" id="companyName"><%= userLogged.users_companies.company_name %></div>
+    
+    <div class="mainTitle mbm">ALUMNOS</div>
+    
+
+    <!------GENERAL ACTIONS------>
+    <!-- <div class="dgas dgas-t1-r2">
+        <div class="dga dga-s" id="details">
+            <i class="fa-solid fa-magnifying-glass-plus"></i>
+            <div class="dgaInfo">
+                Ver formularios asociados
+            </div>        
+        </div>
+    </div> -->
+    
+
+    <!------MAIN FILTERS------>
+    <div id="srMainFilters" class="mbl">
+        
+        <div class="divInputsRow">
+            <div class="divInput">
+                <label class="label">Empresa</label>
+                <input type="text" class="input im ipl" id="company" autocomplete="off">
+                <ul class="predictedElements" id="companyUl"></ul>                    
+            </div>
+            <div class="divInput">
+                <label class="label">DNI</label>
+                <input type="text" class="input ixs ipl" id="dni" autocomplete="off">
+                <ul class="predictedElements" id="dniUl"></ul>                    
+            </div>
+            <div class="divInput">
+                <label class="label">Apellido</label>
+                <input type="text" class="input im ipl" id="lastName" autocomplete="off">
+                <ul class="predictedElements" id="lastNameUl"></ul>                    
+            </div>
+            <div class="divInput">
+                <label class="label">Nombre</label>
+                <input type="text" class="input im ipl" id="firstName" autocomplete="off">
+                <ul class="predictedElements" id="firstNameUl"></ul>                    
+            </div>
+            <div class="divInput">
+                <label class="label">Email</label>
+                <input type="text" class="input im ipl" id="email" autocomplete="off">
+                <ul class="predictedElements" id="emailUl"></ul>                    
+            </div>
+            <div class="divInput">
+                <i class="fa-solid fa-filter-circle-xmark unfilterIcon" id="unfilter"></i>
+            </div>
+        </div>    
+    </div>
+
+    <!------STUDENTS RESULTS------>
+    <div class="divTable" id="table">
+
+        <div class="tableInfo" id="esppInfo">Editar</div>
+        
+        <table>
+            <thead>
+                <tr>                    
+                    <th class="thCss thl">
+                        <div class="thFlex">
+                            Empresa
+                            <i class="fa-solid fa-arrow-up icon" id="company_ASC"></i>
+                            <i class="fa-solid fa-arrow-down icon notVisible" id="company_DESC"></i>
+                        </div>                            
+                    </th>
+                    <th class="thCss thxs">DNI</th>
+                    <th class="thCss thl">
+                        <div class="thFlex">
+                            Apellido
+                            <i class="fa-solid fa-arrow-up icon notVisible" id="last_name_ASC"></i>
+                            <i class="fa-solid fa-arrow-down icon" id="last_name_DESC"></i>
+                        </div>
+                    </th>
+                    <th class="thCss thl">
+                        <div class="thFlex">
+                            Nombre
+                            <i class="fa-solid fa-arrow-up icon" id="first_name_ASC"></i>
+                            <i class="fa-solid fa-arrow-down icon notVisible" id="first_name_DESC"></i>
+                        </div>
+                    </th>
+                    <th class="thCss thxl">Email</th>
+                    <th class="thCss thxs">
+                        <i class="fa-regular fa-pen-to-square icon" id="esppIcon"></i>
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="body"></tbody>
+        </table>
+    </div>
+
+    <!----------PAGES---------->
+    <div class="change-pages mt-m" id="changePages">
+        <div class= "pointer" id="previousPage"><i class="fa-solid fa-circle-chevron-left"></i></div>
+        <div class="page-number" id="pageNumber"></div>
+        <div class= "pointer"  id="nextPage"><i class="fa-solid fa-circle-chevron-right"></i></div>
+    </div>
+
+</div>
+
+
+<!----------LOADER---------->
+<div class="loader ltm llm" id="loader"></div>
+
+<!----------POPUPS---------->
+<%- include('../partials/resultsPopups') %>
+<%- include('./studentsESPP') %>
+
+<script type="module" src="/js/students/students.js"></script>

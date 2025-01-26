@@ -76,6 +76,11 @@ module.exports = (sequelize, DataTypes) => {
         as: 'forms_data_courses',
         foreignKey: 'id_courses' 
       });
+      Form_data.belongsTo(models.Students, {
+         as: 'student_data',
+         foreignKey: 'dni',
+         targetKey: 'dni' 
+       });
       Form_data.hasMany(models.Profile_images, {
          as: 'student_image',
          foreignKey: 'dni',

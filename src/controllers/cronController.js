@@ -15,7 +15,7 @@ const cronController = {
             await completeFormsData()
 
             //create students
-            //await createStudents(students)
+            await createStudents(students)
 
         }catch (error) {
              console.log(error)

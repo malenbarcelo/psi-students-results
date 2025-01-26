@@ -13,7 +13,6 @@ const userFormsValidations = {
             .isEmail().withMessage('Ingrese un mail válido')
 
             .custom(async(value,{ req }) => {
-                console.log('hola')
                 const response = await fetch('https://psi-courses-management.wnpower.host/apis/users/get-users', {
                     method: 'GET', 
                     headers: {

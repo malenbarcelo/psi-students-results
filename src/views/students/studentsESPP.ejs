@@ -1,0 +1,42 @@
+<!-- edit studen popup (espp) -->
+<div class="popup" id="espp">
+    
+    <div class="popupContent" id="esppContent">
+
+        <div class="popupIcons">
+            <div class="popupIcon1"><i class="fa-regular fa-pen-to-sqaure"></i></div>
+            <div class="popupClose2" id="esppClose"><i class="fa-solid fa-rectangle-xmark popupCloseIcon"></i></div>
+        </div>
+
+        <div class="popupTitle1 mtm mbxs" id="esppMainTitle">EDITAR DATOS DEL ALUMNO</div>
+
+        <!-- inputs -->
+        <div class="divInputsColumn mbs">
+            <div class="divInput">
+                <label class="label">DNI</label>
+                <input type="text" class="input ixl spl" id="esppDni" readonly>
+            </div>
+            <div class="divInput">
+                <label class="label" id="esppLastNameLabel">Apellido</label>
+                <input type="text" class="input ixl spl" id="esppLastName">
+                <div class="isError" id="esppLastNameError"></div>
+            </div>
+            <div class="divInput">
+                <label class="label" id="esppFirstNameLabel">Nombre</label>
+                <input type="text" class="input ixl spl" id="esppFirstName">
+                <div class="isError" id="esppFirstNameError"></div>
+            </div>
+            <div class="divInput">
+                <label class="label" id="esppEmailLabel">Email</label>
+                <input type="text" class="input ixl spl" id="esppEmail">
+                <div class="isError" id="esppEmailError"></div>
+            </div>
+            
+        </div>
+
+        <div class="divButtonsRow mtl mbs">
+            <div id="esppAccept" class="btn1 bm">Guardar</div>
+        </div>
+
+    </div>
+</div>

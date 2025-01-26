@@ -5,7 +5,7 @@
 
         <% if (documentTemplate.id_courses == 4 || documentTemplate.id_courses == 5 || documentTemplate.id_courses == 33 || documentTemplate.id_courses == 34 || documentTemplate.id_courses == 35) { %>
             <div class="certDivStudentPhoto">
-                <img src="<%= '/images/studentsPhotosLQ/' + studentImage  %>" class="certStudentPhoto" alt="<%= documentData.last_name + ' ' + documentData.first_name %>">
+                <img src="<%= '/images/studentsPhotosLQ/' + studentImage  %>" class="certStudentPhoto" alt="<%= documentData.student_data.last_name + ' ' + documentData.student_data.first_name %>">
             </div>
         <% } %>
         
@@ -36,7 +36,7 @@
         </div>
     
         <div class="certDivText">
-            <div class="certStudentName"><%= documentData.last_name.toUpperCase() + ' ' + documentData.first_name.toUpperCase() %></div>
+            <div class="certStudentName"><%= documentData.student_data.last_name.toUpperCase() + ' ' + documentData.student_data.first_name.toUpperCase() %></div>
             <div class="certStudentDni">DNI: <%= documentData.dni %></div>
             
             <% if (documentTemplate.id_courses == 4 || documentTemplate.id_courses == 5 || documentTemplate.id_courses == 34 || documentTemplate.id_courses == 35) { %>

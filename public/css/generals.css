@@ -4,7 +4,12 @@
     --color7:#dfdbdb;
     --color8:#FF6501;
     --color9:#575656;
-    --color10:#848282;    
+    --color10:#848282;
+    --errorColorLight:rgb(202, 127, 127);
+    --okColor: green;
+    --okColorLight:rgb(173, 204, 173);
+    --alertColor: rgb(104, 104, 104);
+    --alertColorLight:rgba(255, 255, 0, 0.785);    
 }
 
 /*-----------------------------uls-----------------------------*/
@@ -101,13 +106,20 @@ ul {
     height: 40px;
     animation: spin 3s linear infinite;
     display: none;
-    position: absolute;
-    
+    position: absolute;    
 }
 
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+.ltm{
+    top: 40%;
+}
+
+.llm{
+    left: calc(59% - 50px);
 }
 
 #studentsResultsLoader{
@@ -119,6 +131,10 @@ ul {
 .icon{
     cursor: pointer;
     color: white;
+}
+
+.pointer{
+    cursor: pointer;
 }
 
 .unfilterIcon{

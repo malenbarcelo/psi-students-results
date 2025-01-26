@@ -11,7 +11,6 @@
                 
             <% } %>
         </div>
-
         
         <div class="divMenu">
             <% if (locals.isLogged && userLogged.id_users_categories != 4 ) { %>
@@ -24,6 +23,16 @@
                 <a class = "a2SideNavBar" href="/courses/import-data">Importar resultados</a>               
             <% } %>
         </div>
+
+        <div class="divMenu">
+            <% if (locals.isLogged && userLogged.id_users_categories != 4 ) { %>
+                <div class = "a1SideNavBar">ALUMNOS</div>
+                <a class = "a2SideNavBar" href="/students">Listado de alumnos</a>              
+            <% } %>
+        </div>
+
+
+
     </div>
 </div>
 

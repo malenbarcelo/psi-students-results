@@ -56,8 +56,8 @@ async function printTableSR(dataToPrint) {
                 <th class="${rowClass}">${element.company}</th>
                 <th class="${rowClass}">${dateToString(element.date)}</th>
                 <th class="${rowClass}">${element.dni}</th>
-                <th class="${rowClass}">${element.last_name + ', ' + element.first_name}</th>
-                <th class="${rowClass}">${element.email}</th>
+                <th class="${rowClass}">${element.student_data.last_name + ', ' + element.student_data.first_name}</th>
+                <th class="${rowClass}">${element.student_data.email}</th>
                 <th class="${rowClass + ' ' + color}">${(element.grade * 100).toFixed(2) + '%'}</th>
                 <th class="${rowClass}">${element.validity == 0 ? '-' : element.validity}</th>
                 <th class="${rowClass + ' ' + expirationColor}">${(element.validity == 0 || color != 'greenColor') ? '-' : dateToString(element.expirationDate) + '<br>' + daysToExpiration}</th>
@@ -101,7 +101,7 @@ function srEventListeners(dataToPrint) {
 
         //associated forms info
         info.addEventListener('click',async()=>{
-            arppMainTitle.innerHTML = element.last_name + ', ' + element.first_name
+            arppMainTitle.innerHTML = element.student_data.last_name + ', ' + element.student_data.first_name
             if (element.associatedResults.length == 0) {
                 arppNoAssociatedForms.style.display = 'flex'
                 arppTable.style.display = 'none'
@@ -215,6 +215,8 @@ async function printAssociatedFormsData() {
 
     dataToPrint.forEach(element => {
 
+        console.log(element)
+
         const rowClass = counter % 2 == 0 ? 'tBody1 tBodyEven' : 'tBody1 tBodyOdd'
         const color = element.results[0].passed == 0 ? 'redColor' : 'greenColor'
         const date = element.results[0].date.split(' ')[0]
@@ -230,7 +232,7 @@ async function printAssociatedFormsData() {
                 <th class="${rowClass}">${element.form_name}</th>
                 <th class="${rowClass}">${element.company}</th>
                 <th class="${rowClass}">${element.dni}</th>
-                <th class="${rowClass}">${element.results[0].last_name + ', ' + element.results[0].first_name}</th>
+                <th class="${rowClass}">${element.results[0].student_data.last_name + ', ' + element.results[0].student_data.first_name}</th>
                 <th class="${rowClass + ' ' + color}">${parseFloat(element.results[0].grade,2) * 100 + '%'}</th>
                 <th class="${rowClass}">${element.results[0].days_to_expiration == -9999 ? '-' : dateToString(element.results[0].expiration_date)}</th>                
         `

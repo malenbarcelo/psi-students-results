@@ -711,10 +711,10 @@ const coursesController = {
             const months = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Nomviembre','Diciembre']
             const month = documentData.date.getMonth()
             const issueMonth = months[month]
+
+            console.log(documentData)
             
             if (typeOfDocument == 'certificates') {
-                console.log(documentTemplate)
-                console.log(studentImage)
                 return res.render('courses/certificates',{title:'Certificado',documentCode,documentTemplate,documentData,issueMonth,issueDateString,expirationDateString,studentImage})
             }else{
                 return res.render('courses/credentials',{title:'Credencial',documentCode,documentTemplate,documentData,issueDateString,expirationDateString,studentImage})

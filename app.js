@@ -7,8 +7,12 @@ const FileStore = require('session-file-store')(session);
 const bcrypt = require('bcryptjs')
 const userLoggedMiddleware = require('./src/middlewares/userLoggedMiddleware.js')
 const apisRoutes = require('./src/routes/apisRoutes.js')
+const getRoutes = require('./src/routes/apisRoutes/getRoutes.js')
+const updateRoutes = require('./src/routes/apisRoutes/updateRoutes.js')
+const predictRoutes = require('./src/routes/apisRoutes/predictRoutes.js')
 const usersRoutes = require('./src/routes/usersRoutes.js')
 const coursesRoutes = require('./src/routes/coursesRoutes.js')
+const studentsRoutes = require('./src/routes/studentsRoutes.js')
 const { google } = require('googleapis')
 const dotenv = require('dotenv')
 const cron = require('node-cron')
@@ -59,6 +63,10 @@ app.listen(APP_PORT,() => console.log("Servidor corriendo en puerto " + APP_PORT
 //Routes
 app.use('/',usersRoutes)
 app.use('/apis',apisRoutes)
+app.use('/apis/get',getRoutes)
+app.use('/apis/update',updateRoutes)
+app.use('/apis/predict',predictRoutes)
 app.use('/users',usersRoutes)
 app.use('/courses',coursesRoutes)
+app.use('/students',studentsRoutes)
 
