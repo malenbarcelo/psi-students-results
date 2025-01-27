@@ -65,14 +65,14 @@
 
             <% if (documentTemplate.id_courses == 4 || documentTemplate.id_courses == 5 || documentTemplate.id_courses == 33 || documentTemplate.id_courses == 34) { %>
                 <div class="certDrivingText2">
-                    El dia <%= documentData.date.getDate() + ' de ' + issueMonth + ' de ' + documentData.date.getFullYear() %>, en FUNDACION EL VIENTO BLANCO y PSI SMART SERVICES SA; Registro
+                    El dia <%= issueDay + ' de ' + issueMonth + ' de ' + issueYear %>, en FUNDACION EL VIENTO BLANCO y PSI SMART SERVICES SA; Registro
                     Nacional de Antecedentes en Educación y Capacitación Vial; Inscripción N° 650 - Disposición N°
                     380/12 - Disposición Nº 865/2021
                 </div>
             <% } %>
             <% if (documentTemplate.id_courses == 35) { %>
                 <div class="certDrivingText2">
-                    El dia <%= documentData.date.getDate() + ' de ' + issueMonth + ' de ' + documentData.date.getFullYear() %>, en SFI SOLUCIONES SAS y PSI SMART SERVICES SA; Registro
+                    El dia <%= issueDay + ' de ' + issueMonth + ' de ' + issueYear %>, en SFI SOLUCIONES SAS y PSI SMART SERVICES SA; Registro
                     Nacional de Antecedentes en Educación y Capacitación Vial; Disposición N°
                     380/12 - Disposición Nº 973/2023
                 </div>

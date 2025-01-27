@@ -649,12 +649,12 @@ const coursesController = {
             
             let datesStrings = []
 
-            for (let i = 0; i < studentsData.length; i++) {
-                let dateString = await datesFunctions.dateToString(studentsData[i].date)
-                datesStrings.push({"dateString":dateString})
-            }
+            // for (let i = 0; i < studentsData.length; i++) {
+            //     let dateString = await datesFunctions.dateToString(studentsData[i].date)
+            //     datesStrings.push({"dateString":dateString})
+            // }
 
-            return res.render('courses/studentsResults',{title:'Resultados',course,idCourse,studentsData,datesStrings,courseData,companies})
+            return res.render('courses/studentsResults',{title:'Resultados',course,idCourse,studentsData,courseData,companies})
 
         }catch(error){
             console.log(error)
@@ -718,11 +718,13 @@ const coursesController = {
             //get month name
             const months = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Nomviembre','Diciembre']
             const month = parseInt(issueDateArray[1])
-            const issueMonth = months[month]
+            const issueMonth = months[month-1]
+            const issueDay = parseInt(issueDateArray[2])
+            const issueYear = parseInt(issueDateArray[0])
             
             
             if (typeOfDocument == 'certificates') {
-                return res.render('courses/certificates',{title:'Certificado',documentCode,documentTemplate,documentData,issueMonth,issueDateString,expirationDateString,studentImage})
+                return res.render('courses/certificates',{title:'Certificado',documentCode,documentTemplate,documentData,issueMonth,issueDateString,expirationDateString,studentImage,issueDay,issueYear})
             }else{
                 return res.render('courses/credentials',{title:'Credencial',documentCode,documentTemplate,documentData,issueDateString,expirationDateString,studentImage})
             }
