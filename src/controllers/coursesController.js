@@ -349,7 +349,7 @@ const coursesController = {
             }
 
             //get dataToPrint to print
-            const dataToPrint = await formsDataQueries.dataToPrint(idsFormsData)
+            let dataToPrint = await formsDataQueries.dataToPrint(idsFormsData)
 
             //create .zip
             const archive = archiver('zip')
@@ -365,8 +365,11 @@ const coursesController = {
             //print credentials if necessary
             if (documents.includes('credentials')) {
                 for (const data of dataToPrint) {
+
+                    const studentData = data.student_data.filter( sd => sd.company == data.company)[0]
+
                     const dni = data.dni;
-                    const name = data.last_name + ' ' + data.first_name;
+                    const name = studentData.last_name + ' ' + studentData.first_name;
                     const fileName = data.company + '_Cred_ ' + name + '_' + dni;
             
                     const url = dominio + "courses/credentials/" + data.id;
@@ -389,8 +392,11 @@ const coursesController = {
             //print certificates if necessary
             if (documents.includes('certificates')) {
                 for (const data of dataToPrint) {
+
+                    const studentData = data.student_data.filter( sd => sd.company == data.company)[0]
+
                     const dni = data.dni;
-                    const name = data.last_name + ' ' + data.first_name;
+                    const name = studentData.last_name + ' ' + studentData.first_name;
                     const fileName = data.company + '_Cert_ ' + name + '_' + dni;
             
                     const url = dominio + "courses/certificates/" + data.id;
@@ -721,12 +727,13 @@ const coursesController = {
             const issueMonth = months[month-1]
             const issueDay = parseInt(issueDateArray[2])
             const issueYear = parseInt(issueDateArray[0])
-            
+
+            const studentData = documentData.student_data.filter( sd => sd.company == documentData.company)[0]
             
             if (typeOfDocument == 'certificates') {
-                return res.render('courses/certificates',{title:'Certificado',documentCode,documentTemplate,documentData,issueMonth,issueDateString,expirationDateString,studentImage,issueDay,issueYear})
+                return res.render('courses/certificates',{title:'Certificado',documentCode,documentTemplate,documentData,issueMonth,issueDateString,expirationDateString,studentImage,issueDay,issueYear,studentData})
             }else{
-                return res.render('courses/credentials',{title:'Credencial',documentCode,documentTemplate,documentData,issueDateString,expirationDateString,studentImage})
+                return res.render('courses/credentials',{title:'Credencial',documentCode,documentTemplate,documentData,issueDateString,expirationDateString,studentImage,studentData})
             }
         }catch(error){
             console.log(error)

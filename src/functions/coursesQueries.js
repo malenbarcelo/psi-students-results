@@ -81,7 +81,7 @@ const formsDataQueries = {
                     id:idCourses
                 },
                 attributes:[['id','courseId'],['course_name','form_name'],['pass_grade','pass_grade'],['includes_certificate','includes_certificate'],['validity','validity']],
-                nest:true
+                //nest:true
             })
             return courses
         }catch(error){

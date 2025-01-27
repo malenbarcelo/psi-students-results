@@ -163,7 +163,6 @@ const apisController = {
           
 
         })
-
         return res.status(200).json(studentsResults)
 
     }catch(error){

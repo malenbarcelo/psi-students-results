@@ -132,7 +132,7 @@ const formsDataQueries = {
             include:[{association: 'student_data'}],
             where:whereCondition,
             order:[['id','DESC']],
-            raw:true,
+            //raw:true,
             nest:true
             
         })
@@ -331,6 +331,8 @@ const formsDataQueries = {
         const dataToPrint = await db.Forms_data.findAll({
             include:[{association:'student_data'}],
             where:{id:idsFormsData},
+            //raw:true,
+            nest:true
         })
 
         return dataToPrint        
@@ -405,7 +407,7 @@ const formsDataQueries = {
         const studentDataFiltered = await db.Forms_data.findOne({
             include:[{association:'student_data'}],
             where:{id:idFormData},
-            raw:true,
+            //raw:true,
             nest:true
         })
         return studentDataFiltered        
