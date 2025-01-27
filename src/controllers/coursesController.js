@@ -17,6 +17,7 @@ const sharp = require('sharp')
 const readGoogleSheets = require('../functions/readGoogleSheets')
 const {addFormsData} = require('../functions/addFormsData')
 const {completeFormsData} = require('../functions/completeFormsData')
+const {createStudents} = require('../functions/createStudents')
 
 const coursesController = {
     createCourse: async(req,res) => {
@@ -688,14 +689,21 @@ const coursesController = {
 
             //get expiration date
             const issueDate = documentData.date
-            const issueDateString = await datesFunctions.dateToString(issueDate)
+            const issueDateArray = issueDate.split('-')
+
+            const issueDateString = issueDateArray[2] + '/' + issueDateArray[1] + '/' + issueDateArray[0]
+            
+            //const issueDateString = await datesFunctions.dateToString(issueDate)
             var expirationDateString = '00/00/0000'
 
            if (validity != 0) {
+
+                const expirationDateArray = documentData.expiration_date.split('-')
+                expirationDateString = String(expirationDateArray[2] + '/' + expirationDateArray[1] + '/' + expirationDateArray[0])
                 
-                const expirationDate = new Date(issueDate)
-                expirationDate.setMonth(expirationDate.getMonth() + validity)
-                expirationDateString = await datesFunctions.dateToString(expirationDate);
+                // const expirationDate = new Date(issueDate)
+                // expirationDate.setMonth(expirationDate.getMonth() + validity)
+                // expirationDateString = await datesFunctions.dateToString(expirationDate);
             }
             
             //get student image            
@@ -709,10 +717,9 @@ const coursesController = {
 
             //get month name
             const months = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Nomviembre','Diciembre']
-            const month = documentData.date.getMonth()
+            const month = parseInt(issueDateArray[1])
             const issueMonth = months[month]
-
-            console.log(documentData)
+            
             
             if (typeOfDocument == 'certificates') {
                 return res.render('courses/certificates',{title:'Certificado',documentCode,documentTemplate,documentData,issueMonth,issueDateString,expirationDateString,studentImage})
@@ -773,11 +780,13 @@ const coursesController = {
     importAllData: async(req,res) => {
         try{
             //ADD GOOGLE SHEETS DATA
-            await addFormsData('allData')
+            const students = await addFormsData('allData')
 
             //COMPLETE FORMS DATA
             await completeFormsData()
-            
+
+            //create students
+            await createStudents(students)
 
             return res.redirect('/courses/my-courses/' + req.session.userLogged.users_companies.company_name)
 
