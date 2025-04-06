@@ -167,6 +167,11 @@ border-top-right-radius: 15px;
     color: var(--errorColor);
 }
 
+.okIcon{
+    cursor: pointer;
+    color: black;
+}
+
 /* change page */
 .change-pages{
     display: flex;

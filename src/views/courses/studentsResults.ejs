@@ -125,9 +125,12 @@
                         <th class="thCss thxs">
                             <i class="fa-regular fa-comment-dots icon" id="obsIcon"></i>
                         </th>
-                        <th class="thCss thxs notVisible" id="thCamera">
-                            <i class="fa-solid fa-camera icon" id="imageIcon"></i>
-                        </th>
+                        <% if (userLogged.id_users_categories != 4) { %>
+                            <th class="thCss thxs notVisible" id="thCamera">
+                                <i class="fa-solid fa-camera icon" id="imageIcon"></i>
+                            </th>
+                        <% } %>
+                        
                         <th class="thCss thxs notVisible" id="checkIcon"><input type="checkbox" name="selectAll" class="icon" id="thCheck"></th>
                     </tr>
                 </thead>

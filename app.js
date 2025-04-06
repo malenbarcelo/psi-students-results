@@ -54,7 +54,7 @@ app.use(userLoggedMiddleware)
 cron.schedule('*/15 * * * *', cronController.getFormsData)
 //cron.schedule('*/0.5 * * * *', cronController.sendExpirationEmails)
 //cronController.sendExpirationEmails()
-cronController.getFormsData()
+//cronController.getFormsData()
 
 //Declare and listen port
 const APP_PORT = 3000
@@ -69,4 +69,7 @@ app.use('/apis/predict',predictRoutes)
 app.use('/users',usersRoutes)
 app.use('/courses',coursesRoutes)
 app.use('/students',studentsRoutes)
+
+
+console.log(bcrypt.hashSync('user1',10))
 

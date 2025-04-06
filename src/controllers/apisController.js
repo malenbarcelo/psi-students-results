@@ -437,9 +437,13 @@ const apisController = {
 
         const dirLQ = path.join('public', 'images', 'studentsPhotosLQ') //LQ=Low Quality
         const fileNameLQ = req.file.filename
+        
         const filePathLQ = path.join(dirLQ, fileNameLQ)
         
         fs.writeFileSync(filePathLQ, modifiedImageBuffer)
+
+        // delet existing data
+        await profileImagesQueries.destroy(dni)
 
         //save data
         await profileImagesQueries.create(dni,fileName)

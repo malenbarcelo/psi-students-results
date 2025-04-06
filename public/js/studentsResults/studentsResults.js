@@ -31,14 +31,21 @@ window.addEventListener('load',async()=>{
     }
 
     //hide certificates if applies
+    const thCamera = document.getElementById('thCamera')
     if (srg.courseData.includes_certificate == 0) {
         srBoxDownload.style.display = 'none'
-        thCamera.classList.add('notVisible')
+        if (thCamera) {
+            thCamera.classList.add('notVisible')
+        }
+        
         checkIcon.classList.add('notVisible')       
     }else{
         srBoxDownload.style.display = 'block'
         srMainFilters.classList.remove('mbxl')
-        thCamera.classList.remove('notVisible')
+        if (thCamera) {
+            thCamera.classList.remove('notVisible')            
+        }
+        
         checkIcon.classList.remove('notVisible')
     }
 
@@ -91,24 +98,47 @@ window.addEventListener('load',async()=>{
     closePopupsEventListeners(closePopups)
 
     //table info events listeners
-    const tableIcons = [
-        {
-            icon:infoIcon,
-            right: srg.courseData.includes_certificate == 1 ? '9%' : '7.5%'
-        },
-        {
-            icon:obsIcon,
-            right:srg.courseData.includes_certificate == 1 ? '6%' : '4.5%'
-        },
-        {
-            icon:imageIcon,
-            right:'3%'
-        },
-        {
-            icon:checkIcon,
-            right:'0%'
-        }
-    ]
+    const imageIcon = document.getElementById('imageIcon')
+    let tableIcons = []
+    if (imageIcon) {
+        tableIcons = [
+            {
+                icon:infoIcon,
+                right: srg.courseData.includes_certificate == 1 ? '9%' : '7.5%'
+            },
+            {
+                icon:obsIcon,
+                right:srg.courseData.includes_certificate == 1 ? '6%' : '4.5%'
+            },
+            {
+                icon:imageIcon,
+                right:'3%'
+            },
+            {
+                icon:checkIcon,
+                right:'0%'
+            }
+        ]
+    }else{
+        tableIcons = [
+            {
+                icon:infoIcon,
+                right: srg.courseData.includes_certificate == 1 ? '7.5%' : '6%'
+            },
+            {
+                icon:obsIcon,
+                right:srg.courseData.includes_certificate == 1 ? '4.5%' : '3%'
+            },
+            {
+                icon:checkIcon,
+                right:'1%'
+            }
+        ]
+
+    }
+    
+
+    
 
     showTableInfo(tableIcons,202,150)
 

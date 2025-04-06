@@ -16,6 +16,13 @@ const profileImagesQueries = {
             dni:dni,
             image:fileName            
         })
+    },
+    destroy: async(dni) => {
+        await model.destroy({
+            where:{
+                dni:dni
+            }     
+        })
     }
 }
 
