@@ -13,7 +13,7 @@ async function addFormsData(dataToImport) {
     //import all data (last 5000 or all data)
     let idsToDelete = []
     if (dataToImport == 'allData') {
-        idsToDelete = ids.slice(-5000)
+        idsToDelete = ids.slice(-8000)
     }
 
     var idsToDeleteArray = []

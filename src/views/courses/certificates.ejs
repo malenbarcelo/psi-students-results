@@ -41,17 +41,17 @@
             
             <% if (documentTemplate.id_courses == 4 || documentTemplate.id_courses == 5 || documentTemplate.id_courses == 34 || documentTemplate.id_courses == 35) { %>
                 <div class="certDrivingText">
-                    Aprobó el curso teórico (6hs) / práctico (2hs) <b><%= documentData.form_name.toUpperCase() %> </b>
+                    Aprobó el curso teórico (6hs) / práctico (2hs) <b><%= documentTemplate.course_name.toUpperCase() //documentData.form_name.toUpperCase() %> </b>
                 </div>
             <% } %>
             <% if (documentTemplate.id_courses == 33) { %>
                 <div class="certDrivingText">
-                    Aprobó el curso teórico <b><%= documentData.form_name.toUpperCase() %> </b>
+                    Aprobó el curso teórico <b><%= documentTemplate.course_name.toUpperCase() %> </b>
                 </div>
             <% } %>
             <% if (documentTemplate.id_courses != 4 && documentTemplate.id_courses != 5 && documentTemplate.id_courses != 33 && documentTemplate.id_courses != 34 && documentTemplate.id_courses != 35) { %>
                 <div class="certCourseName">
-                    <%= documentTemplate.course_name %>
+                    <%= documentTemplate.course_name.toUpperCase() %>
                 </div>
             <% } %>
             

@@ -71,5 +71,5 @@ app.use('/courses',coursesRoutes)
 app.use('/students',studentsRoutes)
 
 
-console.log(bcrypt.hashSync('user1',10))
+//console.log(bcrypt.hashSync('user1',10))
 
