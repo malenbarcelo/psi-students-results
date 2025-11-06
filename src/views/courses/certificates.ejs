@@ -28,7 +28,7 @@
                 <% if (documentTemplate.id_courses == 33) { %>
                     <div class="certHeaderDataLine">Certificado de aprobación curso teórico</div>
                     <% } else { %>
-                        <div class="certHeaderDataLine">Certificado de aprobación curso teórico-práctico</div>
+                        <div class="certHeaderDataLine">Certificado de aprobación curso <%= typeOfCourse %></div>
                 <% } %>                
                 <div class="certHeaderDataLine">ARGENTINA, Neuquén <%= issueDateString %></div>
                 <div class="certHeaderDataLine">Código: <%= documentCode %></div>

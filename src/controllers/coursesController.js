@@ -729,9 +729,12 @@ const coursesController = {
             const issueYear = parseInt(issueDateArray[0])
 
             const studentData = documentData.student_data.filter( sd => sd.company == documentData.company)[0]
+
+            const typeOfCourse = courseData.theorical_practical == 1 ? 'teórico-práctico' : 'teórico'
+
             
             if (typeOfDocument == 'certificates') {
-                return res.render('courses/certificates',{title:'Certificado',documentCode,documentTemplate,documentData,issueMonth,issueDateString,expirationDateString,studentImage,issueDay,issueYear,studentData})
+                return res.render('courses/certificates',{title:'Certificado',documentCode,documentTemplate,documentData,issueMonth,issueDateString,expirationDateString,studentImage,issueDay,issueYear,studentData,typeOfCourse})
             }else{
                 return res.render('courses/credentials',{title:'Credencial',documentCode,documentTemplate,documentData,issueDateString,expirationDateString,studentImage,studentData})
             }

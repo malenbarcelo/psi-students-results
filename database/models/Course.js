@@ -39,7 +39,12 @@ module.exports = (sequelize, DataTypes) => {
    enabled:{
       type: DataTypes.INTEGER,
       allowNull: true,
-   }
+   },
+   theorical_practical:{
+      type: DataTypes.INTEGER,
+      allowNull: true,
+   },
+
    }
    const config = {
    tableName : 'courses',

@@ -93,9 +93,9 @@ const usersController = {
             })
 
             const successMessage = true
-            
+
             return res.render('users/createAdm',{title:'Alta administrador',companies, successMessage})
-            
+
         }catch(error){
             return res.send('Ha ocurrido un error')
         }
@@ -116,11 +116,11 @@ const usersController = {
 
             //delete user
             await db.Users.destroy({where: {id:req.body.selectAdm}})
-            
+
             const successMessage = true
-            
+
             return res.render('users/deleteAdm',{title:'Eliminar administrador',administrators,successMessage})
-            
+
         }catch(error){
             console.log(error)
             return res.send('Ha ocurrido un error')
@@ -149,9 +149,9 @@ const usersController = {
             //ADD GOOGLE SHEETS DATA
             //await addFormsData()
 
-            //login and show my-courses
+            // login and show my-courses
             const response = await fetch('https://psi-courses-management.wnpower.host/apis/users/get-users', {
-                method: 'GET', 
+                method: 'GET',
                 headers: {
                     'Authorization': 'Bearer l)Zmi#S$FEB4'
                 }
@@ -160,6 +160,8 @@ const usersController = {
             const users = await response.json()
 
             req.session.userLogged = users.filter( u => u.email == req.body.email)[0]
+
+            console.log(req.session.userLogged)
 
             return res.redirect('/courses/my-courses/' + req.session.userLogged.users_companies.company_name)
 
@@ -173,7 +175,7 @@ const usersController = {
 
             const administrators = await usersQueries.allAdministrators()
             const resultValidation = validationResult(req)
-            
+
             if (resultValidation.errors.length > 0){
                 return res.render('users/restorePassword',{
                     errors:resultValidation.mapped(),
@@ -206,7 +208,7 @@ const usersController = {
         }catch(error){
             console.log(error)
             res.send('Ha ocurrido un error')
-        }       
+        }
     },
 
 }
